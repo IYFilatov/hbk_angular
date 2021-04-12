@@ -1,0 +1,8 @@
+<table style="width:100%">
+  <tr>
+    <th *ngFor="let theader of tableHeaders">{{ theader }}</th>    
+  </tr>
+  <tr *ngFor="let trow of tableData">
+    <td *ngFor="let theader of tableHeaders">{{ trow[theader] }}</td>    
+  </tr>  
+</table>

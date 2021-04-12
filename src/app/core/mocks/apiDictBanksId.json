@@ -1,0 +1,10 @@
+{
+    "base": "DEF",
+    "element": {
+        "number": 2,
+        "name": "secondTest",
+        "code": "123",
+        "internalcode": "56456",
+        "phone": "123523"
+    }
+}

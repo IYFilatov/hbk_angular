@@ -1,0 +1,15 @@
+{
+    "base": "DEF",
+    "journal": [
+        {
+            "number": 1,
+            "name": "TestBank",
+            "phone": null
+        },
+        {
+            "number": 2,
+            "name": "secondTest",
+            "phone": "123523"
+        }
+    ]
+}

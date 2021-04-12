@@ -1,0 +1,15 @@
+{
+  "base": "DEF",
+  "journal": [
+      {
+          "number": 1,
+          "code": "UAH",
+          "symbol": "₴"          
+      },
+      {
+          "number": 2,
+          "code": "USD",
+          "symbol": "$"
+      }
+  ]
+}

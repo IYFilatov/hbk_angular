@@ -1,0 +1,10 @@
+{
+    "base": "DEF",
+    "dictionaries": [
+        "currencies",
+        "banks",
+        "costs",
+        "incomes",
+        "bankaccounts"
+    ]
+}

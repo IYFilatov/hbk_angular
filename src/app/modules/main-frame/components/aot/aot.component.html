@@ -1,0 +1,6 @@
+<p>Dictionaries</p>
+<ul *ngFor="let dict of dictList">
+  <a [routerLink]="['./', dict.name]">
+    <li>{{ dict.name }}</li>
+  </a>
+</ul>

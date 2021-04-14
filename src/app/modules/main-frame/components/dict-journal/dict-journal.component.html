@@ -1,3 +1,4 @@
+<!--
 <table style="width:100%">
   <tr>
     <th *ngFor="let theader of tableHeaders">{{ theader }}</th>    
@@ -5,4 +6,17 @@
   <tr *ngFor="let trow of tableData">
     <td *ngFor="let theader of tableHeaders">{{ trow[theader] }}</td>    
   </tr>  
+</table>
+-->
+
+<table mat-table [dataSource]="tableData">
+  <!--<mat-text-column *ngFor="let theader of tableHeaders" name="{{ theader }}"></mat-text-column> -->
+
+  <ng-container *ngFor="let theader of tableHeaders" matColumnDef="{{theader}}">
+    <mat-header-cell *matHeaderCellDef> {{theader}} </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row[theader]}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="tableHeaders"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: tableHeaders"></mat-row>
 </table>

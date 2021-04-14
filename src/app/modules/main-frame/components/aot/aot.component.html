@@ -1,6 +1,8 @@
-<p>Dictionaries</p>
-<ul *ngFor="let dict of dictList">
-  <a [routerLink]="['./', dict.name]">
-    <li>{{ dict.name }}</li>
-  </a>
-</ul>
+<mat-list>
+  <h3 matSubheader>Dictionaries</h3>
+  <mat-list-item role="listitem" *ngFor="let dict of dictList">
+    <a mat-button [routerLink]="['./', dict.name]">{{dict.name}}</a>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+  <h3 matSubheader>Documents</h3>  
+</mat-list>

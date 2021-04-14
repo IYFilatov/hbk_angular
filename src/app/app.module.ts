@@ -1,4 +1,3 @@
-//11h
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -9,6 +8,7 @@ import { PageNotFoundComponent } from './modules/error-pages/pages/page-not-foun
 
 import { MockBackendInterceptorInterceptor } from './core/interceptors/mock-backend-interceptor.interceptor';
 import { MainFrameModule } from './modules/main-frame/main-frame.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -17,9 +17,10 @@ import { MainFrameModule } from './modules/main-frame/main-frame.module';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
     MainFrameModule,
-    AppRoutingModule,
-    HttpClientModule    
+    AppRoutingModule
   ],
   providers: [
     //mock-backend-interceptor

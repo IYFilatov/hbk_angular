@@ -8,6 +8,11 @@ import { AotComponent } from './components/aot/aot.component';
 import { NoSelectionComponent } from './components/no-selection/no-selection.component';
 import { DictJournalComponent } from './components/dict-journal/dict-journal.component';
 
+import {MatListModule} from '@angular/material/list';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatTableModule} from '@angular/material/table';
+import {MatButtonModule} from '@angular/material/button';
+
 @NgModule({
   declarations: [
     AotComponent,
@@ -17,7 +22,11 @@ import { DictJournalComponent } from './components/dict-journal/dict-journal.com
   ],
   imports: [
     CommonModule,
-    MainFrameRoutingModule
+    MatListModule,
+    MatDividerModule,
+    MatTableModule,
+    MatButtonModule,
+    MainFrameRoutingModule    
   ]
 })
 export class MainFrameModule { }

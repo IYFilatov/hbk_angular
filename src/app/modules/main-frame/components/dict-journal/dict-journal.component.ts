@@ -34,10 +34,13 @@ export class DictJournalComponent implements OnInit {
           this.tableHeaders = Object.keys(this?.tableData[0]);
         },
         err => {
-          //this.dictList = JSON.parse(err.error).message;
           this.router.navigate([`/dict/${baseId}`])
         }
       );
   }
+
+  openElement(row: any) {
+    this.router.navigate([row.number], {relativeTo: this.route});
+  } 
 
 }

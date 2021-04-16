@@ -1,0 +1,10 @@
+:host {
+  width: 100%;
+  background: rgb(240, 245, 247);
+}
+
+.align-left {
+  max-width: 200px;
+  position: absolute;
+  left: 5px;
+}

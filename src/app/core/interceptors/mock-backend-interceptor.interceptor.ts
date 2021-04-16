@@ -3,7 +3,7 @@ import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTT
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
-import { apiDict, apiDictBanks, apiDictCurrencies } from '../mocks';
+import { apiDict, apiDictBanks, apiDictCurrencies, apiDictCurrId } from '../mocks';
 
 @Injectable()
 export class MockBackendInterceptorInterceptor implements HttpInterceptor {
@@ -27,6 +27,8 @@ export class MockBackendInterceptorInterceptor implements HttpInterceptor {
             return ok(apiDictBanks);
           case url.endsWith('mock-api/dict/DEF/currencies') && method === 'GET':
             return ok(apiDictCurrencies);
+          case url.endsWith('mock-api/dict/DEF/currencies/1') && method === 'GET':
+            return ok(apiDictCurrId);
           default:
               //return error("unknown api route");
               return next.handle(request);

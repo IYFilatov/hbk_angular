@@ -1,0 +1,9 @@
+{
+    "base": "DEF",
+    "element": {
+        "number": 1,
+        "code": "980",
+        "name": "USD",
+        "symbol": "$"
+    }
+}

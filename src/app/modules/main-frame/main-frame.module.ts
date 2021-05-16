@@ -8,6 +8,7 @@ import { AotComponent } from './components/aot/aot.component';
 import { NoSelectionComponent } from './components/no-selection/no-selection.component';
 import { DictJournalComponent } from './components/dict-journal/dict-journal.component';
 import { DictElCurrencyComponent } from './pages/dict-el-currency/dict-el-currency.component';
+import { FormCloseButtonsComponent } from './components/form-close-buttons/form-close-buttons.component';
 
 import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
@@ -22,7 +23,8 @@ import {MatInputModule} from '@angular/material/input';
     MainFrameComponent,
     NoSelectionComponent,
     DictJournalComponent,
-    DictElCurrencyComponent
+    DictElCurrencyComponent,
+    FormCloseButtonsComponent
   ],
   imports: [
     CommonModule,

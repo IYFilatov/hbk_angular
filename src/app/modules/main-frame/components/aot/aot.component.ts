@@ -30,5 +30,10 @@ export class AotComponent implements OnInit {
       );
 
   }
+
+  openDictJournal(dictName: string): void {
+    const baseId = this.route.snapshot.paramMap.get('basename');
+    this.router.navigate([`/dict/${baseId}/${dictName}`])
+  }
   
 }

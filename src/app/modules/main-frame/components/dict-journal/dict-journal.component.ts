@@ -29,9 +29,12 @@ export class DictJournalComponent implements OnInit {
 
     this.dictJournalService.getDictJournal(baseId, dictName).subscribe(
         dicJournal => {
+          this.tableHeaders = [];
           this.dictJournal = dicJournal;
-          this.tableData = this.dictJournal.data;
-          this.tableHeaders = Object.keys(this?.tableData[0]);
+          this.tableData = this.dictJournal.data;          
+          if (Array.isArray(this.tableData) && this.tableData.length > 0){
+            this.tableHeaders = Object.keys(this.tableData[0]);
+          }
         },
         err => {
           this.router.navigate([`/dict/${baseId}`])

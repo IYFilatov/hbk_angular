@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ValueSansProvider } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormCloseActions } from 'src/app/core/interfaces/form-close-actions';
 
 import { DictCurrElementService } from 'src/app/core/services/dict-curr-element.service';
 import { dictCurrElement } from 'src/app/shared/models/dict-curr-element';
@@ -9,14 +10,19 @@ import { dictCurrElement } from 'src/app/shared/models/dict-curr-element';
   templateUrl: './dict-el-currency.component.html',
   styleUrls: ['./dict-el-currency.component.css']
 })
-export class DictElCurrencyComponent implements OnInit {
+export class DictElCurrencyComponent implements OnInit, FormCloseActions {
 
-  dictCurrElement: dictCurrElement;
+  dictCurrElement: dictCurrElement = {
+    number: 0,
+    name: '',
+    code: '',
+    symbol: ''
+  };
   
   constructor(private router: Router, private route: ActivatedRoute, private dictCurrElementService: DictCurrElementService) {
     this.route.paramMap.subscribe(() => { this.ngOnInit(); });
   }
-
+  
   ngOnInit(): void {
     this.loadData();
   }
@@ -31,9 +37,29 @@ export class DictElCurrencyComponent implements OnInit {
           this.dictCurrElement = dictElement;          
         },
         err => {
-          this.router.navigate([`/dict/${baseId}/${dictName}`])
+          this.close();
         }
       );
+  }
+
+  okClose(){
+    this.acceptChanges();
+    this.close();
+  }
+
+  cancel(){
+    this.close();
+  }
+
+  acceptChanges(){
+    alert('ok clicked');
+  }
+
+  close(){
+    const baseId = this.route.parent.snapshot.paramMap.get('basename');
+    const dictName = this.route.snapshot.url[0].path;
+
+    this.router.navigate([`/dict/${baseId}/${dictName}`])
   }
 
 }

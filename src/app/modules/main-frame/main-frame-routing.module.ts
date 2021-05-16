@@ -8,12 +8,18 @@ import { MainFrameComponent } from './pages/main-frame/main-frame.component';
 
 const routes: Routes = [
   { 
+    path: 'app/:basename', component: MainFrameComponent,
+    children: [
+      { path: '**', component: NoSelectionComponent }
+    ]
+  },
+  { 
     path: 'dict/:basename',
     component: MainFrameComponent,
     children: [
       { path: 'currencies/:id', component: DictElCurrencyComponent },
       { path: ':dictName', component: DictJournalComponent },
-      { path: '', component: NoSelectionComponent }      
+      { path: '', component: NoSelectionComponent }
     ]
   }
 ];

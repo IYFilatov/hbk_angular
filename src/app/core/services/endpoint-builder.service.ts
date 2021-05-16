@@ -8,9 +8,7 @@ import { Constants } from '../configs/constants';
 })
 export class EndpointBuilderService {
 
-  constructor(
-    private constants: Constants
-  ) { }
+  constructor(private constants: Constants) { }
 
   public createUrl(action: string): string {
     const urlBuilder: UrlBuilder = new UrlBuilder(this.constants.API_ENDPOINT, action);

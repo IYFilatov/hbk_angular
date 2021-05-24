@@ -8,3 +8,11 @@
   position: absolute;
   left: 5px;
 }
+
+.error {
+  padding: 16px;
+  min-width: 200px;
+  color: white;
+  background-color: red;
+  white-space: pre-wrap;
+}

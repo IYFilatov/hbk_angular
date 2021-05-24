@@ -1,4 +1,4 @@
-import { Component, OnInit, ValueSansProvider } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormCloseActions } from 'src/app/core/interfaces/form-close-actions';
 
@@ -12,12 +12,22 @@ import { dictCurrElement } from 'src/app/shared/models/dict-curr-element';
 })
 export class DictElCurrencyComponent implements OnInit, FormCloseActions {
 
-  dictCurrElement: dictCurrElement = {
+  // formCurrElement: FormGroup = new FormGroup({
+  //   number: new FormControl('', Validators.maxLength(11)),
+  //   name: new FormControl('', Validators.maxLength(255)),
+  //   code: new FormControl('', Validators.maxLength(3)),
+  //   symbol: new FormControl('', Validators.maxLength(5))    
+  // });
+
+  currElement: dictCurrElement = {
     number: 0,
     name: '',
     code: '',
     symbol: ''
   };
+  
+  loadedCurrElement: dictCurrElement;
+  errorMessage = '';
   
   constructor(private router: Router, private route: ActivatedRoute, private dictCurrElementService: DictCurrElementService) {
     this.route.paramMap.subscribe(() => { this.ngOnInit(); });
@@ -30,32 +40,71 @@ export class DictElCurrencyComponent implements OnInit, FormCloseActions {
   loadData(): void {
     const baseId = this.route.parent.snapshot.paramMap.get('basename');
     const dictName = this.route.snapshot.url[0].path;
-    const elId = parseInt(this.route.snapshot.paramMap.get('id'));
-
-    this.dictCurrElementService.getCurrElement(baseId, dictName, elId).subscribe(
+    const elId = this.route.snapshot.paramMap.get('id');
+    const elIdNumber = parseInt(elId);
+    
+    if (elIdNumber){
+      this.dictCurrElementService.getCurrElement(baseId, dictName, elIdNumber).subscribe(
         dictElement => {
-          this.dictCurrElement = dictElement;          
+          this.currElement = dictElement;
+          this.loadedCurrElement = JSON.parse(JSON.stringify(dictElement));
         },
         err => {
           this.close();
         }
       );
+    }
+    
   }
 
-  okClose(){
-    this.acceptChanges();
+  isDataChanged(): boolean {
+    return JSON.stringify(this.currElement) !== JSON.stringify(this.loadedCurrElement);    
+  }
+
+  acceptChanges(): void {
+    const elId = this.route.snapshot.paramMap.get('id');
+    
+    if (elId=='new'){
+      this.addElement();
+    } else {
+      this.updateElement();
+    }
+    
+  }
+
+  updateElement(): void {
+    alert('changes to existent');
     this.close();
   }
 
-  cancel(){
+  addElement(): void {
+    const baseId = this.route.parent.snapshot.paramMap.get('basename');
+    const dictName = this.route.snapshot.url[0].path;
+
+    this.dictCurrElementService.addNewElement(baseId, dictName, this.currElement).subscribe(
+      dictElement => {
+        this.errorMessage = '';
+        this.close();
+      },
+      err => {
+        this.errorMessage = ['element didn`t saved! ' , JSON.stringify(err)].join('\n');
+      }
+    );
+  }
+
+  okClose(): void {
+    if (this.isDataChanged()){
+      this.acceptChanges();
+    } else {
+      this.close();
+    }
+  }
+
+  cancel(): void {
     this.close();
   }
 
-  acceptChanges(){
-    alert('ok clicked');
-  }
-
-  close(){
+  close(): void {
     const baseId = this.route.parent.snapshot.paramMap.get('basename');
     const dictName = this.route.snapshot.url[0].path;
 

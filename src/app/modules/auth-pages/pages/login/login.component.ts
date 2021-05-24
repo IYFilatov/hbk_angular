@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
+      this.router.navigate([`app/${this.constants.DEFAULT_BASE_NAME}`]);
     }
   }
 

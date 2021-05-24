@@ -1,0 +1,8 @@
+.mat-toolbar {
+  max-height: 45px;
+  background: rgb(240, 245, 247);
+}
+
+.mat-toolbar-row {
+  max-height: 45px;
+}

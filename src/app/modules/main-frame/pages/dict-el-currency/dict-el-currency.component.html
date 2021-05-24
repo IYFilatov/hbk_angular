@@ -1,32 +1,35 @@
-<mat-grid-list cols="1" rowHeight="70px">
+<p *ngIf="errorMessage" class="error">
+  {{ errorMessage }}
+</p>
+<mat-grid-list cols="1" rowHeight="70px">  
   <mat-grid-tile>
     <mat-label class="align-left">Currency</mat-label>
   </mat-grid-tile>
   <mat-grid-tile>
     <mat-form-field class="align-left">
       <mat-label>Number</mat-label>
-      <input matInput #postalCode maxlength="11" value="{{dictCurrElement.number}}">
+      <input [(ngModel)]="currElement.number" matInput #postalCode maxlength="11" value="{{currElement.number}}">
       <mat-hint align="end">{{postalCode.value.length}} / 11</mat-hint>
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile>
     <mat-form-field class="align-left">
       <mat-label>name</mat-label>
-      <input matInput #postalCode maxlength="255" value="{{dictCurrElement.name}}">
+      <input [(ngModel)]="currElement.name" matInput #postalCode maxlength="255" value="{{currElement.name}}">
       <mat-hint align="end">{{postalCode.value.length}} / 255</mat-hint>
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile>
     <mat-form-field class="align-left">
       <mat-label>Code</mat-label>
-      <input matInput #postalCode maxlength="3" value="{{dictCurrElement.code}}">
+      <input [(ngModel)]="currElement.code" matInput #postalCode maxlength="3" value="{{currElement.code}}">
       <mat-hint align="end">{{postalCode.value.length}} / 3</mat-hint>
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile>
     <mat-form-field class="align-left">
       <mat-label>symbol</mat-label>
-      <input matInput #postalCode maxlength="5" value="{{dictCurrElement.symbol}}">
+      <input [(ngModel)]="currElement.symbol" matInput #postalCode maxlength="5" value="{{currElement.symbol}}">
       <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
     </mat-form-field>
   </mat-grid-tile>

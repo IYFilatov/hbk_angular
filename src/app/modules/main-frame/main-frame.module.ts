@@ -9,6 +9,7 @@ import { NoSelectionComponent } from './components/no-selection/no-selection.com
 import { DictJournalComponent } from './components/dict-journal/dict-journal.component';
 import { DictElCurrencyComponent } from './pages/dict-el-currency/dict-el-currency.component';
 import { FormCloseButtonsComponent } from './components/form-close-buttons/form-close-buttons.component';
+import { DictJournalPanelComponent } from './components/dict-journal-panel/dict-journal-panel.component';
 
 import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
@@ -16,6 +17,10 @@ import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -24,9 +29,11 @@ import {MatInputModule} from '@angular/material/input';
     NoSelectionComponent,
     DictJournalComponent,
     DictElCurrencyComponent,
-    FormCloseButtonsComponent
+    FormCloseButtonsComponent,
+    DictJournalPanelComponent
   ],
   imports: [
+    FormsModule,
     CommonModule,
     MatListModule,
     MatDividerModule,
@@ -34,7 +41,9 @@ import {MatInputModule} from '@angular/material/input';
     MatButtonModule,
     MatGridListModule,
     MatInputModule,
-    MainFrameRoutingModule    
+    MatIconModule,
+    MatToolbarModule,
+    MainFrameRoutingModule
   ]
 })
 export class MainFrameModule { }

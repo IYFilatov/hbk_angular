@@ -31,6 +31,15 @@ export class DictCurrElementService {
     });
   }
 
+  updateElement(base: string, dictName: string, elementNumber: number, currElement: dictCurrElement): Observable<Object> {
+    const url: string = this.endpointBuilder.createUrlWithPathVariables('dict', [base, dictName, elementNumber]);
+    const reqBody = this.getNewElementBody(currElement);
+
+    return this.http.put(url, reqBody, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    });
+  }
+
   getNewElementBody(currElement: dictCurrElement): Object {
     const resBody = Object.assign({}, currElement);
     delete resBody.number;

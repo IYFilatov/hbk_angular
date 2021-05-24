@@ -73,8 +73,20 @@ export class DictElCurrencyComponent implements OnInit, FormCloseActions {
   }
 
   updateElement(): void {
-    alert('changes to existent');
-    this.close();
+    const baseId = this.route.parent.snapshot.paramMap.get('basename');
+    const dictName = this.route.snapshot.url[0].path;
+    const elId = this.route.snapshot.paramMap.get('id');
+    const elIdNumber = parseInt(elId);
+
+    this.dictCurrElementService.updateElement(baseId, dictName, elIdNumber, this.currElement).subscribe(
+      dictElement => {
+        this.errorMessage = '';
+        this.close();
+      },
+      err => {
+        this.errorMessage = ['element didn`t updated! ' , JSON.stringify(err)].join('\n');
+      }
+    );
   }
 
   addElement(): void {

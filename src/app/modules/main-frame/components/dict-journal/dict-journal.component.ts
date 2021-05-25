@@ -16,11 +16,11 @@ export class DictJournalComponent implements OnInit {
   tableData: Object[];
   
   constructor(private router: Router, private route: ActivatedRoute, private dictJournalService: DictJournalService) {
-    this.route.paramMap.subscribe(params => { this.ngOnInit(); });
+    this.route.paramMap.subscribe(params => { this.loadData(); });
   }
 
   ngOnInit(): void {
-    this.loadData();
+    //this.loadData();
   }
 
   loadData(): void {

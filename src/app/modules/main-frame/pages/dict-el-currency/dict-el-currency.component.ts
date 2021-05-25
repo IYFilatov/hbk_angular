@@ -30,11 +30,11 @@ export class DictElCurrencyComponent implements OnInit, FormCloseActions {
   errorMessage = '';
   
   constructor(private router: Router, private route: ActivatedRoute, private dictCurrElementService: DictCurrElementService) {
-    this.route.paramMap.subscribe(() => { this.ngOnInit(); });
+    this.route.paramMap.subscribe(() => { this.loadData(); });
   }
   
   ngOnInit(): void {
-    this.loadData();
+    //this.loadData();
   }
 
   loadData(): void {

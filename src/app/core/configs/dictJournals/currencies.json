@@ -1,0 +1,18 @@
+{
+  "caption": "Currencies",
+  "fields": {
+    "delmark": { 
+      "caption": "del",
+      "show": true
+    },
+    "number": { 
+      "caption": "№"
+    },
+    "code": { 
+      "caption": "Code"
+    },
+    "symbol": { 
+      "caption": "Symbol"
+    }
+  }
+}

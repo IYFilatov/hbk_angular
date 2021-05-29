@@ -55,7 +55,7 @@ export class DictJournalComponent implements OnInit {
       if (params && params.fields && params.fields.hasOwnProperty(v)){
         const fparm = params.fields[v]
         if (!fparm.hasOwnProperty("show") || fparm.show != false){
-          acc.push({id: v, caption: params.fields[v].caption});
+          acc.push({id: v, caption: params.fields[v].caption, classes: params.fields[v].classes});
         }
       } else {
         acc.push({id: v, caption: v});

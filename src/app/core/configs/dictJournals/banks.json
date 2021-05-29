@@ -1,5 +1,5 @@
 {
-  "caption": "Currencies",
+  "caption": "Banks",
   "fields": {
     "delmark": { 
       "caption": "del",
@@ -10,13 +10,13 @@
       "caption": "№",
       "classes": "col-75px"
     },
-    "code": { 
-      "caption": "Code",
-      "classes": "col-10"
+    "name": { 
+      "caption": "Name",
+      "classes": "col-50"
     },
-    "symbol": { 
-      "caption": "Symbol",
-      "classes": "col-10"
+    "phone": { 
+      "caption": "Phone",
+      "classes": "right-text"
     }
   }
 }

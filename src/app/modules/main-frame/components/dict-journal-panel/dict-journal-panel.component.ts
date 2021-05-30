@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-dict-journal-panel',
@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DictJournalPanelComponent implements OnInit {
 
+  @Output() delSelectedClick = new EventEmitter<any>();
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  delSelected(){
+    this.delSelectedClick.emit();
+  }
 }

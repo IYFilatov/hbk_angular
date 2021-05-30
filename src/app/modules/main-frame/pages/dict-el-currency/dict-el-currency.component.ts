@@ -8,7 +8,10 @@ import { dictCurrElement } from 'src/app/shared/models/dict-curr-element';
 @Component({
   selector: 'app-dict-el-currency',
   templateUrl: './dict-el-currency.component.html',
-  styleUrls: ['./dict-el-currency.component.css']
+  styleUrls: ['./dict-el-currency.component.css'],
+  host: {
+    '(document:keydown)': 'keyEvent($event)'
+  }
 })
 export class DictElCurrencyComponent implements OnInit, FormCloseActions {
 
@@ -35,6 +38,15 @@ export class DictElCurrencyComponent implements OnInit, FormCloseActions {
   
   ngOnInit(): void {
     //this.loadData();
+  }
+
+  keyEvent(event: KeyboardEvent){
+    switch(event.key){
+      case "Esc":
+      case "Escape":
+        this.close();
+      break;
+    }
   }
 
   loadData(): void {

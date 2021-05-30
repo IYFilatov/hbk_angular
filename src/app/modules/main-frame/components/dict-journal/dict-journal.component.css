@@ -11,6 +11,10 @@ mat-row:hover {
   cursor: pointer;
 }
 
+.row-is-selected {
+  font-weight: bold;
+}
+
 .col-75px {
   flex: 0 0 75px;
 }

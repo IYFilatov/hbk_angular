@@ -1,11 +1,14 @@
 <!--<a mat-button [routerLink]="['./', row.number]">{{row[theader]}}</a>-->
-<app-dict-journal-panel></app-dict-journal-panel>
-<table mat-table [dataSource]="tableData" class="mat-elevation-z8">
+<app-dict-journal-panel (delSelectedClick)='delSelected()'></app-dict-journal-panel>
+<table mat-table [dataSource]="tableData" class="mat-elevation-z1">
   <ng-container [matColumnDef]="theader.id" *ngFor="let theader of tableHeaders">
     <mat-header-cell *matHeaderCellDef [ngClass]="theader.classes"> {{theader.caption}} </mat-header-cell>
     <mat-cell *matCellDef="let row" [ngClass]="theader.classes"> {{row[theader.id]}} </mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row (click)="openElement(row)" *matRowDef="let row; columns: displayedColumns"></mat-row>
+  <mat-row 
+    (click)="rowClick(rowIdx)"
+    [class.row-is-selected]="isRowSelected(rowIdx)" 
+    *matRowDef="let row; columns: displayedColumns; let rowIdx = index"></mat-row>
 </table>

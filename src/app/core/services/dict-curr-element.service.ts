@@ -45,6 +45,6 @@ export class DictCurrElementService {
     delete resBody.number;
 
     return resBody;
-  }
+  }  
 
 }

@@ -23,6 +23,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { DictElBankComponent } from './pages/dict-el-bank/dict-el-bank.component';
 import { DictElCostComponent } from './pages/dict-el-cost/dict-el-cost.component';
+import { DictElIncomeComponent } from './pages/dict-el-income/dict-el-income.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { DictElCostComponent } from './pages/dict-el-cost/dict-el-cost.component
     FormCloseButtonsComponent,
     DictJournalPanelComponent,
     DictElBankComponent,
-    DictElCostComponent
+    DictElCostComponent,
+    DictElIncomeComponent
   ],
   imports: [
     FormsModule,

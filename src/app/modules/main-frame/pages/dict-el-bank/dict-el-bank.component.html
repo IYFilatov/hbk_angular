@@ -8,35 +8,35 @@
   <mat-grid-tile>
     <mat-form-field class="align-left">
       <mat-label>Number</mat-label>
-      <input [(ngModel)]="bankElement.number" matInput #num maxlength="11" value="{{bankElement.number}}">
+      <input [(ngModel)]="curElement.number" matInput #num maxlength="11" value="{{curElement.number}}">
       <mat-hint align="end">{{num.value.length}} / 11</mat-hint>
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile>
     <mat-form-field class="align-left">
       <mat-label>Name</mat-label>
-      <input [(ngModel)]="bankElement.name" matInput #name maxlength="255" value="{{bankElement.name}}">
+      <input [(ngModel)]="curElement.name" matInput #name maxlength="255" value="{{curElement.name}}">
       <mat-hint align="end">{{name.value.length}} / 255</mat-hint>
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile>
     <mat-form-field class="align-left">
       <mat-label>Code</mat-label>
-      <input [(ngModel)]="bankElement.code" matInput #bcode maxlength="6" value="{{bankElement.code}}">
+      <input [(ngModel)]="curElement.code" matInput #bcode maxlength="6" value="{{curElement.code}}">
       <mat-hint align="end">{{bcode.value.length}} / 6</mat-hint>
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile>
     <mat-form-field class="align-left">
       <mat-label>Internal code</mat-label>
-      <input [(ngModel)]="bankElement.internalcode" matInput #intcode maxlength="10" value="{{bankElement.internalcode}}">
+      <input [(ngModel)]="curElement.internalcode" matInput #intcode maxlength="10" value="{{curElement.internalcode}}">
       <mat-hint align="end">{{intcode.value.length}} / 10</mat-hint>
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile>
     <mat-form-field class="align-left">
       <mat-label>Phone</mat-label>
-      <input [(ngModel)]="bankElement.phone" matInput #phone maxlength="30" value="{{bankElement.phone}}">
+      <input [(ngModel)]="curElement.phone" matInput #phone maxlength="30" value="{{curElement.phone}}">
       <mat-hint align="end">{{phone.value.length}} / 30</mat-hint>
     </mat-form-field>
   </mat-grid-tile>

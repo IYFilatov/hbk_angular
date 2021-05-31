@@ -2,7 +2,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 
 import { FormCloseActions } from "src/app/core/interfaces/form-close-actions";
 import { DictElementService } from "src/app/core/services/dict-element.service";
-import { dictElement } from "../models/dict-element";
+import { dictElement } from "../models/dictionaries/dict-element";
 
 export abstract class dictElBase implements FormCloseActions {
 

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { dictElBase } from 'src/app/shared/classes/dict-el-base';
 import { DictElementService } from 'src/app/core/services/dict-element.service';
-import { dictCostElement } from 'src/app/shared/models/dict-cost-element';
+import { dictCostElement } from 'src/app/shared/models/dictionaries/dict-cost-element';
 
 
 @Component({

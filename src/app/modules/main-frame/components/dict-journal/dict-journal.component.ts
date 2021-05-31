@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 import { DictJournalService } from 'src/app/core/services/dict-journal.service';
-import { dictJournal } from 'src/app/shared/models/dict-journal';
+import { dictJournal } from 'src/app/shared/models/dictionaries/dict-journal';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { SnackBarMessageComponent } from 'src/app/shared/components/snack-bar-message/snack-bar-message.component';
 

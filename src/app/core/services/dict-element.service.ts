@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { dictElement } from 'src/app/shared/models/dict-element';
+import { dictElement } from 'src/app/shared/models/dictionaries/dict-element';
 import { EndpointBuilderService } from './endpoint-builder.service';
 
 @Injectable({

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { DictElementService } from 'src/app/core/services/dict-element.service';
 import { dictElBase } from 'src/app/shared/classes/dict-el-base';
-import { dictCurrElement } from 'src/app/shared/models/dict-curr-element';
+import { dictCurrElement } from 'src/app/shared/models/dictionaries/dict-curr-element';
 
 @Component({
   selector: 'app-dict-el-currency',

@@ -22,6 +22,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { DictElBankComponent } from './pages/dict-el-bank/dict-el-bank.component';
+import { DictElCostComponent } from './pages/dict-el-cost/dict-el-cost.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { DictElBankComponent } from './pages/dict-el-bank/dict-el-bank.component
     DictElCurrencyComponent,
     FormCloseButtonsComponent,
     DictJournalPanelComponent,
-    DictElBankComponent
+    DictElBankComponent,
+    DictElCostComponent
   ],
   imports: [
     FormsModule,

@@ -21,6 +21,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { DictElBankComponent } from './pages/dict-el-bank/dict-el-bank.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     DictJournalComponent,
     DictElCurrencyComponent,
     FormCloseButtonsComponent,
-    DictJournalPanelComponent
+    DictJournalPanelComponent,
+    DictElBankComponent
   ],
   imports: [
     FormsModule,

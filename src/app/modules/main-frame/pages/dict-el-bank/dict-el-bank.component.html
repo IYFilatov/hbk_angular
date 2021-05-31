@@ -1,0 +1,44 @@
+<p *ngIf="errorMessage" class="error">
+  {{ errorMessage }}
+</p>
+<mat-grid-list cols="1" rowHeight="70px">  
+  <mat-grid-tile>
+    <mat-label class="align-left">Banks</mat-label>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="align-left">
+      <mat-label>Number</mat-label>
+      <input [(ngModel)]="bankElement.number" matInput #num maxlength="11" value="{{bankElement.number}}">
+      <mat-hint align="end">{{num.value.length}} / 11</mat-hint>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="align-left">
+      <mat-label>Name</mat-label>
+      <input [(ngModel)]="bankElement.name" matInput #name maxlength="255" value="{{bankElement.name}}">
+      <mat-hint align="end">{{name.value.length}} / 255</mat-hint>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="align-left">
+      <mat-label>Code</mat-label>
+      <input [(ngModel)]="bankElement.code" matInput #bcode maxlength="6" value="{{bankElement.code}}">
+      <mat-hint align="end">{{bcode.value.length}} / 6</mat-hint>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="align-left">
+      <mat-label>Internal code</mat-label>
+      <input [(ngModel)]="bankElement.internalcode" matInput #intcode maxlength="10" value="{{bankElement.internalcode}}">
+      <mat-hint align="end">{{intcode.value.length}} / 10</mat-hint>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="align-left">
+      <mat-label>Phone</mat-label>
+      <input [(ngModel)]="bankElement.phone" matInput #phone maxlength="30" value="{{bankElement.phone}}">
+      <mat-hint align="end">{{phone.value.length}} / 30</mat-hint>
+    </mat-form-field>
+  </mat-grid-tile>
+</mat-grid-list>
+<app-form-close-buttons (okCloseClick)='okClose()' (cancelClick)='cancel()'></app-form-close-buttons>

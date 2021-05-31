@@ -1,35 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormCloseActions } from 'src/app/core/interfaces/form-close-actions';
 
-import { DictCurrElementService } from 'src/app/core/services/dict-curr-element.service';
-import { dictCurrElement } from 'src/app/shared/models/dict-curr-element';
+import { FormCloseActions } from 'src/app/core/interfaces/form-close-actions';
+import { DictElementService } from 'src/app/core/services/dict-element.service';
+import { dictBankElement } from 'src/app/shared/models/dict-bank-element';
 
 @Component({
-  selector: 'app-dict-el-currency',
-  templateUrl: './dict-el-currency.component.html',
-  styleUrls: ['./dict-el-currency.component.css']
+  selector: 'app-dict-el-bank',
+  templateUrl: './dict-el-bank.component.html',
+  styleUrls: ['./dict-el-bank.component.css']
 })
-export class DictElCurrencyComponent implements OnInit, FormCloseActions {
+export class DictElBankComponent implements OnInit, FormCloseActions {
 
-  // formCurrElement: FormGroup = new FormGroup({
-  //   number: new FormControl('', Validators.maxLength(11)),
-  //   name: new FormControl('', Validators.maxLength(255)),
-  //   code: new FormControl('', Validators.maxLength(3)),
-  //   symbol: new FormControl('', Validators.maxLength(5))    
-  // });
-
-  currElement: dictCurrElement = {
+  bankElement: dictBankElement = {
     number: 0,
     name: '',
-    code: '',
-    symbol: ''
+    code: '',    
+    internalcode: '',
+    phone: ''
   };
   
-  loadedCurrElement: dictCurrElement;
+  loadedBankElement: dictBankElement;
   errorMessage = '';
   
-  constructor(private router: Router, private route: ActivatedRoute, private dictCurrElementService: DictCurrElementService) {
+  constructor(private router: Router, private route: ActivatedRoute, private dictElementService: DictElementService) {
     this.route.paramMap.subscribe(() => { this.loadData(); });
   }
   
@@ -44,10 +38,10 @@ export class DictElCurrencyComponent implements OnInit, FormCloseActions {
     const elIdNumber = parseInt(elId);
     
     if (elIdNumber){
-      this.dictCurrElementService.getCurrElement(baseId, dictName, elIdNumber).subscribe(
+      this.dictElementService.getDictElement(baseId, dictName, elIdNumber).subscribe(
         dictElement => {
-          this.currElement = dictElement;
-          this.loadedCurrElement = JSON.parse(JSON.stringify(dictElement));
+          this.bankElement = dictElement;
+          this.loadedBankElement = JSON.parse(JSON.stringify(dictElement));
         },
         err => {
           this.close();
@@ -58,7 +52,7 @@ export class DictElCurrencyComponent implements OnInit, FormCloseActions {
   }
 
   isDataChanged(): boolean {
-    return JSON.stringify(this.currElement) !== JSON.stringify(this.loadedCurrElement);    
+    return JSON.stringify(this.bankElement) !== JSON.stringify(this.loadedBankElement);    
   }
 
   acceptChanges(): void {
@@ -78,7 +72,7 @@ export class DictElCurrencyComponent implements OnInit, FormCloseActions {
     const elId = this.route.snapshot.paramMap.get('id');
     const elIdNumber = parseInt(elId);
 
-    this.dictCurrElementService.updateElement(baseId, dictName, elIdNumber, this.currElement).subscribe(
+    this.dictElementService.updateElement(baseId, dictName, elIdNumber, this.bankElement).subscribe(
       dictElement => {
         this.errorMessage = '';
         this.close();
@@ -93,7 +87,7 @@ export class DictElCurrencyComponent implements OnInit, FormCloseActions {
     const baseId = this.route.parent.snapshot.paramMap.get('basename');
     const dictName = this.route.snapshot.url[0].path;
 
-    this.dictCurrElementService.addNewElement(baseId, dictName, this.currElement).subscribe(
+    this.dictElementService.addNewElement(baseId, dictName, this.bankElement).subscribe(
       dictElement => {
         this.errorMessage = '';
         this.close();

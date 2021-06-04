@@ -1,0 +1,52 @@
+<p *ngIf="errorMessage" class="error">
+  {{ errorMessage }}
+</p>
+<mat-grid-list cols="1" rowHeight="70px">  
+  <mat-grid-tile>
+    <mat-label class="align-left">Bank account</mat-label>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="align-left">
+      <mat-label>Number</mat-label>
+      <input [(ngModel)]="curElement.number" matInput #num maxlength="11" value="{{curElement.number}}">
+      <mat-hint align="end">{{num.value.length}} / 11</mat-hint>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="align-left">
+      <mat-label>Description</mat-label>
+      <input [(ngModel)]="curElement.description" matInput #description maxlength="255" value="{{curElement.description}}">
+      <mat-hint align="end">{{description.value.length}} / 255</mat-hint>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="align-left">
+      <mat-label>Account number</mat-label>
+      <input [(ngModel)]="curElement.accnumber" matInput #accnum maxlength="255" value="{{curElement.accnumber}}">
+      <mat-hint align="end">{{accnum.value.length}} / 255</mat-hint>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="align-left">
+      <mat-label>Bank</mat-label>
+      <input [(ngModel)]="curElement.bankid" matInput value="{{curElement.bankid}}">      
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="align-left">
+      <mat-label>Value binding</mat-label>
+      <input [(ngModel)]="curElement.opened_at" matInput [matDatepicker]="openAt" [value]="curElement.opened_at">
+      <mat-datepicker-toggle matSuffix [for]="openAt"></mat-datepicker-toggle>
+      <mat-datepicker #openAt></mat-datepicker>
+    </mat-form-field>  
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="align-left">
+      <mat-label>Value binding</mat-label>
+      <input [(ngModel)]="curElement.closed_at" matInput [matDatepicker]="closeAt" [value]="curElement.closed_at">
+      <mat-datepicker-toggle matSuffix [for]="closeAt"></mat-datepicker-toggle>
+      <mat-datepicker #closeAt></mat-datepicker>
+    </mat-form-field>  
+  </mat-grid-tile>  
+</mat-grid-list>
+<app-form-close-buttons (okCloseClick)='okClose()' (cancelClick)='cancel()'></app-form-close-buttons>

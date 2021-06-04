@@ -21,9 +21,14 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+
+
 import { DictElBankComponent } from './pages/dict-el-bank/dict-el-bank.component';
 import { DictElCostComponent } from './pages/dict-el-cost/dict-el-cost.component';
 import { DictElIncomeComponent } from './pages/dict-el-income/dict-el-income.component';
+import { DictElBankaccountComponent } from './pages/dict-el-bankaccount/dict-el-bankaccount.component';
 
 
 @NgModule({
@@ -37,7 +42,8 @@ import { DictElIncomeComponent } from './pages/dict-el-income/dict-el-income.com
     DictJournalPanelComponent,
     DictElBankComponent,
     DictElCostComponent,
-    DictElIncomeComponent
+    DictElIncomeComponent,
+    DictElBankaccountComponent
   ],
   imports: [
     FormsModule,
@@ -48,6 +54,8 @@ import { DictElIncomeComponent } from './pages/dict-el-income/dict-el-income.com
     MatButtonModule,
     MatGridListModule,
     MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,    
     MatIconModule,
     MatToolbarModule,
     MainFrameRoutingModule    

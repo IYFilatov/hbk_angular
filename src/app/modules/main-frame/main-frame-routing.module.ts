@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DictJournalComponent } from './components/dict-journal/dict-journal.component';
 import { NoSelectionComponent } from './components/no-selection/no-selection.component';
 import { DictElBankComponent } from './pages/dict-el-bank/dict-el-bank.component';
+import { DictElBankaccountComponent } from './pages/dict-el-bankaccount/dict-el-bankaccount.component';
 import { DictElCostComponent } from './pages/dict-el-cost/dict-el-cost.component';
 import { DictElCurrencyComponent } from './pages/dict-el-currency/dict-el-currency.component';
 import { DictElIncomeComponent } from './pages/dict-el-income/dict-el-income.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
       { path: 'banks/:id', component: DictElBankComponent },
       { path: 'costs/:id', component: DictElCostComponent },
       { path: 'incomes/:id', component: DictElIncomeComponent },
+      { path: 'bankaccounts/:id', component: DictElBankaccountComponent },
       { path: ':dictName', component: DictJournalComponent },
       { path: '', component: NoSelectionComponent }
     ]

@@ -1,0 +1,22 @@
+{
+  "caption": "Bank accounts",
+  "fields": {
+    "delmark": { 
+      "caption": "del",
+      "show": true,
+      "classes": "col-75px"
+    },
+    "number": { 
+      "caption": "№",
+      "classes": "col-75px"
+    },
+    "description": { 
+      "caption": "Description",
+      "classes": "col-50"
+    },
+    "accnumber": {
+      "caption": "Account number",
+      "classes": "right-text"
+    }
+  }
+}

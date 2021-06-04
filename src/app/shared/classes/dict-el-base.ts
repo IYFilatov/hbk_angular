@@ -44,21 +44,32 @@ export abstract class dictElBase implements FormCloseActions {
   acceptChanges(): void {
     const elId = this.route.snapshot.paramMap.get('id');
     
+    
     if (elId=='new'){
-      this.addElement();
+      const objNew = this.onAddNewElement();
+      this.addElement(objNew);
     } else {
-      this.updateElement();
+      const objUpd = this.onUpdateElement();
+      this.updateElement(objUpd);
     }
     
   }
 
-  updateElement(): void {
+  onAddNewElement(): dictElement {
+    return this.curElement;
+  }
+
+  onUpdateElement(): dictElement {
+    return this.curElement;
+  }
+
+  updateElement(obj: dictElement): void {
     const baseId = this.route.parent.snapshot.paramMap.get('basename');
     const dictName = this.route.snapshot.url[0].path;
     const elId = this.route.snapshot.paramMap.get('id');
     const elIdNumber = parseInt(elId);
 
-    this.dictElementService.updateElement(baseId, dictName, elIdNumber, this.curElement).subscribe(
+    this.dictElementService.updateElement(baseId, dictName, elIdNumber, obj).subscribe(
       dictElement => {
         this.errorMessage = '';
         this.close();
@@ -69,11 +80,11 @@ export abstract class dictElBase implements FormCloseActions {
     );
   }
 
-  addElement(): void {
+  addElement(obj: dictElement): void {
     const baseId = this.route.parent.snapshot.paramMap.get('basename');
     const dictName = this.route.snapshot.url[0].path;
 
-    this.dictElementService.addNewElement(baseId, dictName, this.curElement).subscribe(
+    this.dictElementService.addNewElement(baseId, dictName, obj).subscribe(
       dictElement => {
         this.errorMessage = '';
         this.close();

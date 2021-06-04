@@ -39,10 +39,20 @@ export class DictElementService {
   }
 
   getNewElementBody(dictElement: dictElement): Object {
-    const resBody = Object.assign({}, dictElement);
+    let resBody = Object.assign({}, dictElement);
+    //resBody = this.adaptTypes(resBody);    
     delete resBody.number;
-
+    
     return resBody;
   }  
+
+  // adaptTypes(obj:dictElement ): dictElement{
+  //   const dateFields = Object.keys(obj).filter((key) => Object.prototype.toString.call(obj[key]) === '[object Date]');
+  //   dateFields.forEach((v)=>{
+  //     obj[v] = obj[v].toISOString().slice(0, 19).replace('T', ' ');
+  //   })
+      
+  //   return obj;
+  // }
 
 }

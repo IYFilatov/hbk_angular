@@ -5,6 +5,6 @@ export interface dictBankAccountElement extends dictElement {
   description: string;
   accnumber: string;
   bankid: number;
-  opened_at: string;
-  closed_at: string;
+  opened_at: Date;
+  closed_at: Date;
 }

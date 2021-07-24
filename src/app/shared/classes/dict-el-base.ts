@@ -26,15 +26,15 @@ export abstract class dictElBase implements FormCloseActions {
     if (elIdNumber){
       this.dictElementService.getDictElement(baseId, dictName, elIdNumber).subscribe(
         dictElement => {
-          this.curElement = dictElement;
-          this.loadedElement = JSON.parse(JSON.stringify(dictElement));
+          const convEl = this.onLoadElement(dictElement);
+          this.curElement = convEl;
+          this.loadedElement = JSON.parse(JSON.stringify(convEl));
         },
         err => {
           this.close();
         }
       );
-    }
-    
+    }    
   }
 
   isDataChanged(): boolean {
@@ -51,16 +51,23 @@ export abstract class dictElBase implements FormCloseActions {
     } else {
       const objUpd = this.onUpdateElement();
       this.updateElement(objUpd);
-    }
-    
+    }    
   }
 
   onAddNewElement(): dictElement {
-    return this.curElement;
+    return this.onSendElement(this.curElement);
   }
 
   onUpdateElement(): dictElement {
-    return this.curElement;
+    return this.onSendElement(this.curElement);
+  }
+
+  onSendElement(sendElement: dictElement): dictElement {
+    return sendElement;
+  }
+
+  onLoadElement(incomeElement: dictElement):dictElement {
+    return incomeElement;
   }
 
   updateElement(obj: dictElement): void {

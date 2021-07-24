@@ -22,13 +22,14 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material/core';
-
+import {MatNativeDateModule, DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
+import { CUSTOM_DATE_FORMATS, CustomDatePickerAdapter, CUSTOM_DATETIME_FORMATS } from 'src/app/shared/classes/custom-datepicker-adapter';
 
 import { DictElBankComponent } from './pages/dict-el-bank/dict-el-bank.component';
 import { DictElCostComponent } from './pages/dict-el-cost/dict-el-cost.component';
 import { DictElIncomeComponent } from './pages/dict-el-income/dict-el-income.component';
 import { DictElBankaccountComponent } from './pages/dict-el-bankaccount/dict-el-bankaccount.component';
+
 
 
 @NgModule({
@@ -43,7 +44,7 @@ import { DictElBankaccountComponent } from './pages/dict-el-bankaccount/dict-el-
     DictElBankComponent,
     DictElCostComponent,
     DictElIncomeComponent,
-    DictElBankaccountComponent
+    DictElBankaccountComponent,
   ],
   imports: [
     FormsModule,
@@ -55,13 +56,18 @@ import { DictElBankaccountComponent } from './pages/dict-el-bankaccount/dict-el-
     MatGridListModule,
     MatInputModule,
     MatDatepickerModule,
-    MatNativeDateModule,    
+    MatNativeDateModule,
     MatIconModule,
     MatToolbarModule,
-    MainFrameRoutingModule    
+    MainFrameRoutingModule,
   ],
   providers: [
-    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {verticalPosition: 'top', duration: 2000}}
-  ]
+    {
+      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+      useValue: { verticalPosition: 'top', duration: 2000 },
+    },
+    {provide: DateAdapter, useClass: CustomDatePickerAdapter},
+    {provide: MAT_DATE_FORMATS, useValue: CUSTOM_DATETIME_FORMATS},
+  ],
 })
-export class MainFrameModule { }
+export class MainFrameModule {}

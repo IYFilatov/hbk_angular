@@ -29,6 +29,16 @@ const routes: Routes = [
       { path: ':dictName', component: DictJournalComponent },
       { path: '', component: NoSelectionComponent }
     ]
+  },
+  { 
+    path: 'doc/:basename',
+    component: MainFrameComponent,
+    children: [
+      //{ path: 'incomes/:id', component: DocElIncomeComponent },
+      //{ path: 'costs/:id', component: DocElCostComponent },
+      //{ path: ':docName', component: DocJournalComponent },
+      { path: '', component: NoSelectionComponent }
+    ]
   }
 ];
 

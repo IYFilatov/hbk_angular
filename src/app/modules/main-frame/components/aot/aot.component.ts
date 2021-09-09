@@ -11,7 +11,8 @@ import { aotElement } from '../../../../shared/models/aot-element';
 })
 export class AotComponent implements OnInit {
 
-  dictList: aotElement[];  
+  dictList: aotElement[];
+  docList: aotElement[];
 
   constructor(private router: Router, private route: ActivatedRoute, private aotService: AotService) { }
 
@@ -19,21 +20,36 @@ export class AotComponent implements OnInit {
 
     const baseId = this.route.snapshot.paramMap.get('basename');
 
+    this.getDictList(baseId);
+    this.getDocList(baseId);
+  }
+
+  getDictList(baseId: string){
     this.aotService.getDictList(baseId).subscribe(
       dictList => {
         this.dictList = dictList        
       },
-        err => {
-          //this.dictList = JSON.parse(err.error).message;
-          //this.router.navigate(['/pagenotfound'])
-        }
-      );
+      err => {
+        //this.dictList = JSON.parse(err.error).message;
+        //this.router.navigate(['/pagenotfound'])
+      }
+    );
+  }
 
+  getDocList(baseId: string){
+    this.aotService.getDocList(baseId).subscribe(
+      docList => { this.docList = docList }
+    );
   }
 
   openDictJournal(dictName: string): void {
     const baseId = this.route.snapshot.paramMap.get('basename');
     this.router.navigate([`/dict/${baseId}/${dictName}`])
+  }
+
+  openDocJournal(docName: string): void {
+    const baseId = this.route.snapshot.paramMap.get('basename');
+    this.router.navigate([`/doc/${baseId}/${docName}`])
   }
   
 }

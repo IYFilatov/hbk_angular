@@ -5,5 +5,9 @@
     <a mat-button (click) = "openDictJournal(dict.name)">{{dict.name}}</a>
   </mat-list-item>
   <mat-divider></mat-divider>
-  <h3 matSubheader>Documents</h3>  
+  <h3 matSubheader>Documents</h3>
+  <mat-list-item role="listitem" *ngFor="let doc of docList">
+    <a mat-button (click) = "openDocJournal(doc.name)">{{doc.name}}</a>
+  </mat-list-item>
+  <mat-divider></mat-divider>
 </mat-list>

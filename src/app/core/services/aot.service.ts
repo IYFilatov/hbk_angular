@@ -21,4 +21,13 @@ export class AotService {
       )
     );
   }
+
+  getDocList(base: string): Observable<aotElement[]> {
+    const url: string = this.endpointBuilder.createUrlWithPathVariables('doc', [base]);
+    return this.http.get(url).pipe(
+      map(
+        data => data['documents']?.map(v => ({"type": "doc", "name": v}))
+      )
+    );
+  }
 }

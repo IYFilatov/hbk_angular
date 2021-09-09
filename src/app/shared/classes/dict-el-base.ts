@@ -34,7 +34,7 @@ export abstract class dictElBase implements FormCloseActions {
           this.close();
         }
       );
-    }    
+    }
   }
 
   isDataChanged(): boolean {

@@ -7,4 +7,5 @@ export interface dictBankAccountElement extends dictElement {
   bankid: number;
   opened_at: Date;
   closed_at: Date;
+  bankObj: {};
 }

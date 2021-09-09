@@ -5,6 +5,7 @@ import { DictElementService } from 'src/app/core/services/dict-element.service';
 import { CUSTOM_DATE_FORMATS } from 'src/app/shared/classes/custom-datepicker-adapter';
 
 import { dictElBase } from 'src/app/shared/classes/dict-el-base';
+import { dictBankElement } from 'src/app/shared/models/dictionaries/dict-bank-element';
 import { dictBankAccountElement } from 'src/app/shared/models/dictionaries/dict-BankAccount-element';
 
 @Component({
@@ -23,6 +24,7 @@ export class DictElBankaccountComponent extends dictElBase implements OnInit {
     bankid: 0,
     opened_at: new Date(),
     closed_at: null,
+    bankObj: {},
   };
 
   loadedElement: dictBankAccountElement;
@@ -42,6 +44,11 @@ export class DictElBankaccountComponent extends dictElBase implements OnInit {
     incomeElement.closed_at = this.converToDate(incomeElement.closed_at);
 
     return incomeElement;
+  }
+
+  setBankElement(bankEl: dictBankElement){
+    this.curElement.bankObj = bankEl;
+    this.curElement.bankid = bankEl?.number || 0;
   }
 
   converToDate(v: any): Date {

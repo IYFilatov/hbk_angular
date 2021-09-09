@@ -14,7 +14,24 @@ export class EndpointBuilderService {
     const urlBuilder: UrlBuilder = new UrlBuilder(this.constants.API_ENDPOINT, action);
     return urlBuilder.toString();
   }
-  
+
+  public createUrlWithPathVarAndQueryMap(action: string, pathVariables: any[] = [], queryValues: Map<any, any> = new Map()): string {
+    let encodedPathVariablesUrl: string = '';    
+    for (const pathVariable of pathVariables) {
+      if (pathVariable !== null) {
+        encodedPathVariablesUrl += `/${encodeURIComponent(pathVariable.toString())}`;
+      }
+    }
+    
+    let queryParamHandler = (qs: QueryStringParameters) => {
+      for (const [key, value] of queryValues.entries()){
+        qs.push(key, value);      
+      }      
+    }
+
+    return this.createUrlWithQueryParameters(`${action}${encodedPathVariablesUrl}`, queryParamHandler);
+  }
+
   public createUrlWithQueryParameters(action: string, queryStringHandler?: (queryStringParameters: QueryStringParameters) => void): string {
     const urlBuilder: UrlBuilder = new UrlBuilder(this.constants.API_ENDPOINT, action);
 
@@ -24,7 +41,7 @@ export class EndpointBuilderService {
     
     return urlBuilder.toString();
   }
-  
+
   public createUrlWithPathVariables(action: string, pathVariables: any[] = []): string {
     let encodedPathVariablesUrl: string = '';
     

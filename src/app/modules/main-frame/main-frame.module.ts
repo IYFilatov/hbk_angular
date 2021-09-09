@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MainFrameRoutingModule } from './main-frame-routing.module';
 import { MainFrameComponent } from './pages/main-frame/main-frame.component';
@@ -23,12 +23,14 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule, DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { CUSTOM_DATE_FORMATS, CustomDatePickerAdapter, CUSTOM_DATETIME_FORMATS } from 'src/app/shared/classes/custom-datepicker-adapter';
 
 import { DictElBankComponent } from './pages/dict-el-bank/dict-el-bank.component';
 import { DictElCostComponent } from './pages/dict-el-cost/dict-el-cost.component';
 import { DictElIncomeComponent } from './pages/dict-el-income/dict-el-income.component';
 import { DictElBankaccountComponent } from './pages/dict-el-bankaccount/dict-el-bankaccount.component';
+import { BankinputComponent } from './components/bankinput/bankinput.component';
 
 
 
@@ -44,10 +46,12 @@ import { DictElBankaccountComponent } from './pages/dict-el-bankaccount/dict-el-
     DictElBankComponent,
     DictElCostComponent,
     DictElIncomeComponent,
-    DictElBankaccountComponent,
+    DictElBankaccountComponent,    
+    BankinputComponent,
   ],
   imports: [
     FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     MatListModule,
     MatDividerModule,
@@ -57,6 +61,7 @@ import { DictElBankaccountComponent } from './pages/dict-el-bankaccount/dict-el-
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatAutocompleteModule,
     MatIconModule,
     MatToolbarModule,
     MainFrameRoutingModule,

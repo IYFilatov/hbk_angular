@@ -22,6 +22,19 @@ export class DictJournalService {
     );
   }
 
+  searchJournal(base: string, dictName: string, searchText: string = ''): Observable<dictJournal> {
+    let queryParam = new Map([
+      ['st', searchText]
+    ]);    
+
+    const url: string = this.endpointBuilder.createUrlWithPathVarAndQueryMap('dict', [base, dictName], queryParam);
+    return this.http.get(url).pipe(
+      map(
+        data => { return{"type": "dict", "name": dictName, "data": data['journal']} }
+      )
+    );
+  }
+
   deleteElement(base: string, dictName: string, elementNumber: number){
     const url: string = this.endpointBuilder.createUrlWithPathVariables('dict', [base, dictName, elementNumber]);
     

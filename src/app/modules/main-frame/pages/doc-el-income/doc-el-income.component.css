@@ -1,0 +1,50 @@
+:host {
+  width: 100%;
+  background: rgb(240, 245, 247);
+}
+
+.align-left {
+  max-width: 200px;
+  position: absolute;
+  left: 5px;
+}
+
+.docTable {
+  width: 100%;
+  background: rgb(240, 245, 247);
+}
+
+.mat-column-linenum {
+  max-width: 32px;
+  padding-right: 24px;
+  text-align: left;
+}
+
+.mat-column-inctypenum {
+  padding-left: 16px;
+  text-align: left;
+}
+
+.mat-column-accnum {
+  padding-left: 16px;
+  text-align: left;
+}
+
+.mat-column-description {
+  padding-left: 16px;
+  text-align: left;
+}
+
+.mat-column-amount {
+  max-width: 32px;
+  text-align: right;
+  font-weight: bold;
+}
+
+.error {
+  padding: 16px;
+  min-width: 200px;
+  color: white;
+  background-color: red;
+  white-space: pre-wrap;
+}

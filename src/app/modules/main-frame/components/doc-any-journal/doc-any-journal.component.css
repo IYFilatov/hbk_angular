@@ -1,0 +1,44 @@
+:host {
+  width: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+mat-row:hover {
+  background: whitesmoke;
+  cursor: pointer;
+}
+
+.row-is-selected {
+  font-weight: bold;
+}
+
+.col-75px {
+  flex: 0 0 75px;
+}
+
+.col-10 {
+  flex: 0 0 10%;
+}
+
+.col-25 {
+  flex: 0 0 25%;
+}
+
+.col-50 {
+  flex: 0 0 50%;
+}
+
+.col-75 {
+  flex: 0 0 75%;
+}
+
+.centered-text {
+  justify-content: center;
+}
+
+.right-text {
+  justify-content: flex-end;
+}

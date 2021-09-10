@@ -31,7 +31,7 @@
   </mat-grid-tile>
   <mat-grid-tile>
     <mat-form-field class="align-left">
-      <mat-label>Value binding</mat-label>
+      <mat-label>Open date</mat-label>
       <input [(ngModel)]="curElement.opened_at" matInput [matDatepicker]="openAt" [value]="curElement.opened_at">
       <mat-datepicker-toggle matSuffix [for]="openAt"></mat-datepicker-toggle>
       <mat-datepicker #openAt></mat-datepicker>
@@ -39,7 +39,7 @@
   </mat-grid-tile>
   <mat-grid-tile>
     <mat-form-field class="align-left">
-      <mat-label>Value binding</mat-label>
+      <mat-label>Close date</mat-label>
       <input [(ngModel)]="curElement.closed_at" matInput [matDatepicker]="closeAt" [value]="curElement.closed_at">
       <mat-datepicker-toggle matSuffix [for]="closeAt"></mat-datepicker-toggle>
       <mat-datepicker #closeAt></mat-datepicker>

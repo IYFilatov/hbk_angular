@@ -32,6 +32,8 @@ import { DictElIncomeComponent } from './pages/dict-el-income/dict-el-income.com
 import { DictElBankaccountComponent } from './pages/dict-el-bankaccount/dict-el-bankaccount.component';
 import { BankinputComponent } from './components/bankinput/bankinput.component';
 import { DocAnyJournalComponent } from './components/doc-any-journal/doc-any-journal.component';
+import { DocAnyJournalPanelComponent } from './components/doc-any-journal-panel/doc-any-journal-panel.component';
+import { DocElIncomeComponent } from './pages/doc-el-income/doc-el-income.component';
 
 
 
@@ -48,7 +50,7 @@ import { DocAnyJournalComponent } from './components/doc-any-journal/doc-any-jou
     DictElCostComponent,
     DictElIncomeComponent,
     DictElBankaccountComponent,    
-    BankinputComponent, DocAnyJournalComponent,
+    BankinputComponent, DocAnyJournalComponent, DocAnyJournalPanelComponent, DocElIncomeComponent,
   ],
   imports: [
     FormsModule,

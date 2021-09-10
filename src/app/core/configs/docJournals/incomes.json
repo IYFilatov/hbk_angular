@@ -6,16 +6,22 @@
       "show": true,
       "classes": "col-75px"
     },
+    "posted": { 
+      "caption": "posted",
+      "show": true,
+      "classes": "col-75px"
+    },
     "number": { 
       "caption": "№",
       "classes": "col-75px"
     },
     "date": { 
       "caption": "Date",
-      "classes": "col-50"
+      "classes": "col-10"
     },
     "description": { 
-      "caption": "Description"      
+      "caption": "Description",
+      "classes": "col-50"      
     }
   }
 }

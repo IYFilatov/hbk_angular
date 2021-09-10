@@ -9,6 +9,7 @@ import { DictElBankaccountComponent } from './pages/dict-el-bankaccount/dict-el-
 import { DictElCostComponent } from './pages/dict-el-cost/dict-el-cost.component';
 import { DictElCurrencyComponent } from './pages/dict-el-currency/dict-el-currency.component';
 import { DictElIncomeComponent } from './pages/dict-el-income/dict-el-income.component';
+import { DocElIncomeComponent } from './pages/doc-el-income/doc-el-income.component';
 import { MainFrameComponent } from './pages/main-frame/main-frame.component';
 
 const routes: Routes = [
@@ -35,7 +36,7 @@ const routes: Routes = [
     path: 'doc/:basename',
     component: MainFrameComponent,
     children: [
-      //{ path: 'incomes/:id', component: DocElIncomeComponent },
+      { path: 'incomes/:id', component: DocElIncomeComponent },
       //{ path: 'costs/:id', component: DocElCostComponent },
       { path: ':docName', component: DocAnyJournalComponent },
       { path: '', component: NoSelectionComponent }

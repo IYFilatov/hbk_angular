@@ -1,64 +1,60 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { DictJournalService } from 'src/app/core/services/dict-journal.service';
-import { dictJournal } from 'src/app/shared/models/dictionaries/dict-journal';
-import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { SnackBarMessageComponent } from 'src/app/shared/components/snack-bar-message/snack-bar-message.component';
+import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
+import { DocAnyJournalService } from 'src/app/core/services/doc-any-journal.service';
+import { docJournal } from 'src/app/shared/models/documents/doc-journal';
 
 import { JournalColumnConf } from 'src/app/core/interfaces/journal-column-conf';
 import conf from '../../../../core/configs';
 
 @Component({
-  selector: 'app-dict-journal',
-  templateUrl: './dict-journal.component.html',
-  styleUrls: ['./dict-journal.component.css'],
-  host: {
-    '(document:keydown)': 'keyEvent($event)'
-  }
+  selector: 'app-doc-any-journal',
+  templateUrl: './doc-any-journal.component.html',
+  styleUrls: ['./doc-any-journal.component.css']
 })
-export class DictJournalComponent implements OnInit {
+export class DocAnyJournalComponent implements OnInit {
 
-  dictJournal: dictJournal;
+  docJournal: docJournal;
   tableHeaders: JournalColumnConf[];
   displayedColumns: String[];
   tableData: Object[];
   selectedRow: number;
-  
-  constructor(private router: Router, private route: ActivatedRoute, private dictJournalService: DictJournalService, public dialog: MatDialog, private _snackBar: MatSnackBar) {
+
+  constructor(private router: Router, private route: ActivatedRoute, private docJournalService: DocAnyJournalService, public dialog: MatDialog, private _snackBar: MatSnackBar) {
     this.route.paramMap.subscribe(params => { this.loadData(); });
   }
 
   ngOnInit(): void {
-    //this.loadData();
   }
 
   loadData(): void {
     const baseId = this.route.parent.snapshot.paramMap.get('basename');
-    const dictName = this.route.snapshot.paramMap.get('dictName');
+    const docName = this.route.snapshot.paramMap.get('docName');
     this.selectedRow = -1;
 
-    this.dictJournalService.getDictJournal(baseId, dictName).subscribe(
-        dicJournal => {
+    this.docJournalService.getDocJournal(baseId, docName).subscribe(
+        docJournal => {
           let columnKeys: Array<String> = [];
-          this.dictJournal = dicJournal;
-          this.tableData = this.dictJournal.data;
+          this.docJournal = docJournal;
+          this.tableData = this.docJournal.data;
           if (Array.isArray(this.tableData) && this.tableData.length > 0){
             columnKeys = Object.keys(this.tableData[0]);
           }
 
-          this.applySettings(dictName, columnKeys);
+          this.applySettings(docName, columnKeys);
         },
         err => {
-          this.router.navigate([`/dict/${baseId}`])
+          this.router.navigate([`/doc/${baseId}`])
         }
       );
   }
 
-  applySettings(dictName: string, columnKeys: Array<String>){
-    const params = conf.dictionaries[dictName];
+  applySettings(docName: string, columnKeys: Array<String>){
+    const params = conf.documents[docName];
     this.tableHeaders = columnKeys.reduce((acc, v, i) => {
       if (params && params.fields && params.fields.hasOwnProperty(v)){
         const fparm = params.fields[v]
@@ -143,9 +139,9 @@ export class DictJournalComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         const baseId = this.route.parent.snapshot.paramMap.get('basename');
-        const dictName = this.route.snapshot.paramMap.get('dictName');
+        const docName = this.route.snapshot.paramMap.get('docName');
 
-        this.dictJournalService.deleteElement(baseId, dictName, num).subscribe(
+        this.docJournalService.deleteElement(baseId, docName, num).subscribe(
           (answ) => {
             this._snackBar.openFromComponent(SnackBarMessageComponent, { data: 'Element successfully deleted'});
             this.loadData();
@@ -173,15 +169,14 @@ export class DictJournalComponent implements OnInit {
       dialogRef.afterClosed().subscribe((result) => {
         if (result) {
           const baseId = this.route.parent.snapshot.paramMap.get('basename');
-          const dictName = this.route.snapshot.paramMap.get('dictName');
+          const docName = this.route.snapshot.paramMap.get('docName');
 
-          this.dictJournalService.markAsDeleted(baseId, dictName, num).subscribe(
+          this.docJournalService.markAsDeleted(baseId, docName, num).subscribe(
             (answ) => {
               this.loadData();
             },
             (err) => {
-              this._snackBar.openFromComponent(SnackBarMessageComponent, { data: `Something goes wrong. Element not marked, please try again.`});
-              //console.log(`error on delete ${num}: ${JSON.stringify(err)}`);
+              this._snackBar.openFromComponent(SnackBarMessageComponent, { data: `Something goes wrong. Element not marked, please try again.`});              
             }
           );
         }

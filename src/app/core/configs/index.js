@@ -1,17 +1,10 @@
 const constants = require('./constants.ts');
+const dictionaries = require('./dictJournals');
+const documents = require('./docJournals');
 
-const journalCurr = require('./dictJournals/currencies.json');
-const journalBanks = require('./dictJournals/banks.json');
-const journalCosts = require('./dictJournals/costs.json');
-const journalIncomes = require('./dictJournals/incomes.json');
-const journalBankAcc = require('./dictJournals/bankaccounts.json');
 
 module.exports = {
   constants,
-
-  currencies: journalCurr,
-  banks: journalBanks,
-  costs: journalCosts,
-  incomes: journalIncomes,
-  bankaccounts: journalBankAcc
+  dictionaries,
+  documents
 };

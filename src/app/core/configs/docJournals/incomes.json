@@ -1,0 +1,21 @@
+{
+  "caption": "Incomes",
+  "fields": {
+    "delmark": { 
+      "caption": "del",
+      "show": true,
+      "classes": "col-75px"
+    },
+    "number": { 
+      "caption": "№",
+      "classes": "col-75px"
+    },
+    "date": { 
+      "caption": "Date",
+      "classes": "col-50"
+    },
+    "description": { 
+      "caption": "Description"      
+    }
+  }
+}

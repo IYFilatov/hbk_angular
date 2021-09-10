@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { DictJournalComponent } from './components/dict-journal/dict-journal.component';
+import { DocAnyJournalComponent } from './components/doc-any-journal/doc-any-journal.component';
 import { NoSelectionComponent } from './components/no-selection/no-selection.component';
 import { DictElBankComponent } from './pages/dict-el-bank/dict-el-bank.component';
 import { DictElBankaccountComponent } from './pages/dict-el-bankaccount/dict-el-bankaccount.component';
@@ -36,7 +37,7 @@ const routes: Routes = [
     children: [
       //{ path: 'incomes/:id', component: DocElIncomeComponent },
       //{ path: 'costs/:id', component: DocElCostComponent },
-      //{ path: ':docName', component: DocJournalComponent },
+      { path: ':docName', component: DocAnyJournalComponent },
       { path: '', component: NoSelectionComponent }
     ]
   }

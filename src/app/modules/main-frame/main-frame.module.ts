@@ -16,6 +16,7 @@ import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatTableModule} from '@angular/material/table';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatInputModule} from '@angular/material/input';
@@ -58,6 +59,7 @@ import { DocElIncomeComponent } from './pages/doc-el-income/doc-el-income.compon
     CommonModule,
     MatListModule,
     MatDividerModule,
+    MatCheckboxModule,
     MatTableModule,
     MatButtonModule,
     MatGridListModule,

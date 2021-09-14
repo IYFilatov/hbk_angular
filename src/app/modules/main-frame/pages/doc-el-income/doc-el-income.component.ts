@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SelectionModel } from '@angular/cdk/collections';
+
+import { MatTable } from '@angular/material/table';
 
 import { docElBase } from 'src/app/shared/classes/doc-el-base';
 import { DocElementService } from 'src/app/core/services/doc-element.service';
 import { docIncomeElement } from 'src/app/shared/models/documents/doc-income-element';
+import { docIncomeTableElement } from 'src/app/shared/models/documents/doc-income--table-element';
 
 @Component({
   selector: 'app-doc-el-income',
@@ -18,18 +22,67 @@ export class DocElIncomeComponent extends docElBase implements OnInit {
     number: 0,
     date: new Date(),
     description: '',
-    tableData: [{}]
+    tableData: []
   };
   
   loadedElement: docIncomeElement;
-  tableData: Object[];
-  displayedColumns: String[] = ['linenum', 'inctypenum', 'accnum', 'description', 'amount'];
+  displayedColumns: String[] = ['select', 'linenum', 'inctypenum', 'accnum', 'description', 'amount'];
+  selection = new SelectionModel<docIncomeTableElement>(true, []);
+
+  @ViewChild(MatTable) docTable: MatTable<docIncomeTableElement>;
 
   constructor(protected router: Router, protected route: ActivatedRoute, protected docElementService: DocElementService) {
     super(router, route, docElementService);
   }
 
   ngOnInit(): void {
+  }
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.curElement?.tableData?.length;
+    return numSelected === numRows;
+  }
+
+  masterToggle() {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+      return;
+    }
+
+    this.selection.select(...this.curElement?.tableData);
+  }
+
+  checkboxLabel(row?: docIncomeTableElement): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.linenum + 1}`;
+  }
+
+  addLine() {
+    const newRow: docIncomeTableElement = {
+      linenum: this.curElement?.tableData[this.curElement?.tableData?.length-1]['linenum'] + 1,
+      inctypenum: null,
+      accnum: null,
+      description: '',
+      amount: 0,
+    };
+
+    this.curElement?.tableData.push(newRow);
+    this.docTable.renderRows();
+  }
+
+  removeLines() {
+    this.curElement.tableData = this.curElement?.tableData.filter((v, i) => {
+      return this.selection.selected.findIndex(el=>{ return el.linenum == v.linenum} ) == -1;
+    });
+    this.curElement.tableData.map((v, i) => {v.linenum = i+1});
+    this.selection.clear();
+    console.log(this.curElement.tableData);
+
+
+    this.docTable.renderRows();
   }
 
 }

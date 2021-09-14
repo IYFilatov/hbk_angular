@@ -62,7 +62,7 @@ export class DocElIncomeComponent extends docElBase implements OnInit {
 
   addLine() {
     const newRow: docIncomeTableElement = {
-      linenum: this.curElement?.tableData[this.curElement?.tableData?.length-1]['linenum'] + 1,
+      linenum: this.curElement?.tableData?.length+1,
       inctypenum: null,
       accnum: null,
       description: '',
@@ -79,9 +79,7 @@ export class DocElIncomeComponent extends docElBase implements OnInit {
     });
     this.curElement.tableData.map((v, i) => {v.linenum = i+1});
     this.selection.clear();
-    console.log(this.curElement.tableData);
-
-
+    
     this.docTable.renderRows();
   }
 

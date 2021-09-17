@@ -24,7 +24,7 @@ export class DictElBankaccountComponent extends dictElBase implements OnInit {
     bankid: 0,
     opened_at: new Date(),
     closed_at: null,
-    bankObj: {},
+    bankObj: null,
   };
 
   loadedElement: dictBankAccountElement;

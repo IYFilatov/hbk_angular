@@ -1,0 +1,14 @@
+<div class="wrapper">
+  <input type="text" matInput [matAutocomplete]="auto" [formControl]="searchCtrl" [value] = "selectedElement?.name">
+  <button matSuffix mat-icon-button aria-label="Clear" (click)="clearSelected()">
+    <mat-icon>close</mat-icon>
+  </button>    
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectElement($event)" [displayWith]="displayValue">
+    <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
+    <ng-container *ngIf="!isLoading">
+      <mat-option *ngFor="let income of filteredIncomes" [value]="income">
+        <span> {{income.number}}.  <b> {{income.name}} </b></span>
+      </mat-option>
+    </ng-container>
+  </mat-autocomplete>
+</div>

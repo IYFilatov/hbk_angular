@@ -8,6 +8,7 @@ import { docElBase } from 'src/app/shared/classes/doc-el-base';
 import { DocElementService } from 'src/app/core/services/doc-element.service';
 import { docIncomeElement } from 'src/app/shared/models/documents/doc-income-element';
 import { docIncomeTableElement } from 'src/app/shared/models/documents/doc-income--table-element';
+import { dictIncomeElement } from 'src/app/shared/models/dictionaries/dict-income-element';
 
 @Component({
   selector: 'app-doc-el-income',
@@ -26,7 +27,7 @@ export class DocElIncomeComponent extends docElBase implements OnInit {
   };
   
   loadedElement: docIncomeElement;
-  displayedColumns: String[] = ['select', 'linenum', 'inctypenum', 'accnum', 'description', 'amount'];
+  displayedColumns: String[] = ['select', 'linenum', 'inctypeobj', 'accnum', 'description', 'amount'];
   selection = new SelectionModel<docIncomeTableElement>(true, []);
 
   @ViewChild(MatTable) docTable: MatTable<docIncomeTableElement>;
@@ -67,6 +68,7 @@ export class DocElIncomeComponent extends docElBase implements OnInit {
       accnum: null,
       description: '',
       amount: 0,
+      inctypeObj: null
     };
 
     this.curElement?.tableData.push(newRow);
@@ -81,6 +83,11 @@ export class DocElIncomeComponent extends docElBase implements OnInit {
     this.selection.clear();
     
     this.docTable.renderRows();
+  }
+
+  setIncomeElement(incomeEl: dictIncomeElement){
+    //this.curElement.bankObj = incomeEl;
+    //this.curElement.bankid = incomeEl?.number || 0;
   }
 
 }

@@ -1,3 +1,4 @@
+import { dictBankElement } from "./dict-bank-element";
 import { dictElement } from "./dict-element";
 
 export interface dictBankAccountElement extends dictElement {
@@ -7,5 +8,5 @@ export interface dictBankAccountElement extends dictElement {
   bankid: number;
   opened_at: Date;
   closed_at: Date;
-  bankObj: {};
+  bankObj: dictBankElement;
 }

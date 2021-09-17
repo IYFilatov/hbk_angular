@@ -1,0 +1,14 @@
+<div class="wrapper">
+  <input type="text" matInput [matAutocomplete]="auto" [formControl]="searchCtrl" [value] = "selectedElement?.accnumber">
+  <button matSuffix mat-icon-button aria-label="Clear" (click)="clearSelected()">
+    <mat-icon>close</mat-icon>
+  </button>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectElement($event)" [displayWith]="displayValue">
+    <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
+    <ng-container *ngIf="!isLoading">
+      <mat-option *ngFor="let bankacc of filteredBankacc" [value]="bankacc">
+        <span> {{bankacc.number}}.  <b> {{bankacc.accnumber}} </b> {{bankacc.description}} </span>
+      </mat-option>
+    </ng-container>
+  </mat-autocomplete>  
+</div>

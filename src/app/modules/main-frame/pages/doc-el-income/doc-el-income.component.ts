@@ -68,7 +68,8 @@ export class DocElIncomeComponent extends docElBase implements OnInit {
       accnum: null,
       description: '',
       amount: 0,
-      inctypeObj: null
+      inctypeObj: null,
+      bankaccObj: null
     };
 
     this.curElement?.tableData.push(newRow);

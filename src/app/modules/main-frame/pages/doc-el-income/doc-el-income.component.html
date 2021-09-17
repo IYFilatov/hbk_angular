@@ -69,7 +69,7 @@
   </ng-container>
   <ng-container matColumnDef="accnum">
     <th mat-header-cell *matHeaderCellDef> Account </th>
-    <td mat-cell *matCellDef="let element"> {{element?.accnum}} </td>
+    <td mat-cell *matCellDef="let element"> <app-inp-dict-bankacc-table [selectedElement]="element.bankaccObj" (bankElementEvent)="setIncomeElement($event)"></app-inp-dict-bankacc-table></td>    
   </ng-container>
   <ng-container matColumnDef="description">
     <th mat-header-cell *matHeaderCellDef> Description </th>

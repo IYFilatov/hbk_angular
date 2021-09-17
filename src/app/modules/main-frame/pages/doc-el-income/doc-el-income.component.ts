@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SelectionModel } from '@angular/cdk/collections';
 
@@ -9,6 +9,7 @@ import { DocElementService } from 'src/app/core/services/doc-element.service';
 import { docIncomeElement } from 'src/app/shared/models/documents/doc-income-element';
 import { docIncomeTableElement } from 'src/app/shared/models/documents/doc-income--table-element';
 import { dictIncomeElement } from 'src/app/shared/models/dictionaries/dict-income-element';
+import { dictBankAccountElement } from 'src/app/shared/models/dictionaries/dict-BankAccount-element';
 
 @Component({
   selector: 'app-doc-el-income',
@@ -86,9 +87,14 @@ export class DocElIncomeComponent extends docElBase implements OnInit {
     this.docTable.renderRows();
   }
 
-  setIncomeElement(incomeEl: dictIncomeElement){
-    //this.curElement.bankObj = incomeEl;
-    //this.curElement.bankid = incomeEl?.number || 0;
+  setIncomeElement(incomeEl: dictIncomeElement, parentElement: docIncomeTableElement){
+    parentElement.inctypenum = incomeEl?.number || 0;
+    parentElement.inctypeObj = incomeEl;    
+  }
+
+  setBankAccElement(bankaccEl: dictBankAccountElement, parentElement: docIncomeTableElement){
+    parentElement.accnum = bankaccEl?.number || 0;
+    parentElement.bankaccObj = bankaccEl;    
   }
 
 }

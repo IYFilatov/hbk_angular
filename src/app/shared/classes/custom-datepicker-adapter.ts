@@ -1,3 +1,4 @@
+import { Injectable } from "@angular/core";
 import { NativeDateAdapter } from "@angular/material/core";
 import * as moment from "moment";
 
@@ -25,6 +26,7 @@ export const CUSTOM_DATE_FORMATS = {
   }
 };
 
+@Injectable()
 export class CustomDatePickerAdapter extends NativeDateAdapter {
   format(date: Date, displayFormat: Object): string {
     switch(displayFormat){

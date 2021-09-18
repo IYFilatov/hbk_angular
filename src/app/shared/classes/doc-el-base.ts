@@ -105,6 +105,14 @@ export abstract class docElBase implements FormCloseActions {
     );
   }
 
+  converToDate(v: any): Date {
+    let ret: Date = null;
+    if (v) {
+      ret = new Date(v);
+    }
+    return ret;
+  }
+
   okClose(): void {
     if (this.isDataChanged()){
       this.acceptChanges();

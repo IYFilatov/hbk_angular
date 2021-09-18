@@ -40,6 +40,12 @@ export class DocElIncomeComponent extends docElBase implements OnInit {
   ngOnInit(): void {
   }
 
+  onLoadElement(incomeElement: docIncomeElement): docIncomeElement {
+    incomeElement.date = this.converToDate(incomeElement.date);    
+
+    return incomeElement;
+  }
+
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.curElement?.tableData?.length;

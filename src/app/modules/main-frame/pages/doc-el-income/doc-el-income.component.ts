@@ -28,7 +28,7 @@ export class DocElIncomeComponent extends docElBase implements OnInit {
   };
   
   loadedElement: docIncomeElement;
-  displayedColumns: String[] = ['select', 'linenum', 'inctypeobj', 'accnum', 'description', 'amount'];
+  displayedColumns: String[] = ['select', 'linenum', 'inctypeobj', 'accnumObj', 'description', 'amount'];
   selection = new SelectionModel<docIncomeTableElement>(true, []);
 
   @ViewChild(MatTable) docTable: MatTable<docIncomeTableElement>;
@@ -89,7 +89,7 @@ export class DocElIncomeComponent extends docElBase implements OnInit {
 
   setIncomeElement(incomeEl: dictIncomeElement, parentElement: docIncomeTableElement){
     parentElement.inctypenum = incomeEl?.number || 0;
-    parentElement.inctypeObj = incomeEl;    
+    parentElement.inctypeObj = incomeEl;
   }
 
   setBankAccElement(bankaccEl: dictBankAccountElement, parentElement: docIncomeTableElement){

@@ -1,4 +1,5 @@
-import { Component, EventEmitter, HostListener, Output} from '@angular/core';
+import { Component, EventEmitter, forwardRef, HostListener, Input, Output} from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { DictJournalService } from 'src/app/core/services/dict-journal.service';
@@ -8,10 +9,18 @@ import { dictBankAccountElement } from 'src/app/shared/models/dictionaries/dict-
 @Component({
   selector: 'app-inp-dict-bankacc',
   templateUrl: './inp-dict-bankacc.component.html',
-  styleUrls: ['./inp-dict-bankacc.component.css']
+  styleUrls: ['./inp-dict-bankacc.component.css'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(()=>InpDictBankaccComponent),
+      multi: true
+    }
+  ]
 })
 export class InpDictBankaccComponent extends inpDictBankaccBase {
 
+  @Input() selectedElement: dictBankAccountElement;
   @Output() bankaccElementEvent = new EventEmitter<dictBankAccountElement>();
 
   constructor(protected route: ActivatedRoute, protected dictJournalService: DictJournalService) {

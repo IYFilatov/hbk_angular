@@ -27,7 +27,7 @@
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile>
-    <app-bankinput class="align-left" [selectedElement]="curElement.bankObj" (bankElementEvent)="setBankElement($event)"></app-bankinput>
+    <app-in-dict-bank class="align-left" [(ngModel)]="curElement.bankObj" (bankElementEvent)="setBankElement($event)"></app-in-dict-bank>
   </mat-grid-tile>
   <mat-grid-tile>
     <mat-form-field class="align-left">

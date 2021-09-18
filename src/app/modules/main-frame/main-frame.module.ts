@@ -31,7 +31,6 @@ import { DictElBankComponent } from './pages/dict-el-bank/dict-el-bank.component
 import { DictElCostComponent } from './pages/dict-el-cost/dict-el-cost.component';
 import { DictElIncomeComponent } from './pages/dict-el-income/dict-el-income.component';
 import { DictElBankaccountComponent } from './pages/dict-el-bankaccount/dict-el-bankaccount.component';
-import { BankinputComponent } from './components/bankinput/bankinput.component';
 import { DocAnyJournalComponent } from './components/doc-any-journal/doc-any-journal.component';
 import { DocAnyJournalPanelComponent } from './components/doc-any-journal-panel/doc-any-journal-panel.component';
 import { DocElIncomeComponent } from './pages/doc-el-income/doc-el-income.component';
@@ -39,6 +38,7 @@ import { InpDictIncomesComponent } from './components/inp-dict-incomes/inp-dict-
 import { InpDictIncomesTableComponent } from './components/inp-dict-incomes-table/inp-dict-incomes-table.component';
 import { InpDictBankaccComponent } from './components/inp-dict-bankacc/inp-dict-bankacc.component';
 import { InpDictBankaccTableComponent } from './components/inp-dict-bankacc-table/inp-dict-bankacc-table.component';
+import { InDictBankComponent } from './components/in-dict-bank/in-dict-bank.component';
 
 
 
@@ -55,7 +55,7 @@ import { InpDictBankaccTableComponent } from './components/inp-dict-bankacc-tabl
     DictElCostComponent,
     DictElIncomeComponent,
     DictElBankaccountComponent,    
-    BankinputComponent, DocAnyJournalComponent, DocAnyJournalPanelComponent, DocElIncomeComponent, InpDictIncomesComponent, InpDictIncomesTableComponent, InpDictBankaccComponent, InpDictBankaccTableComponent,
+    DocAnyJournalComponent, DocAnyJournalPanelComponent, DocElIncomeComponent, InpDictIncomesComponent, InpDictIncomesTableComponent, InpDictBankaccComponent, InpDictBankaccTableComponent, InDictBankComponent,
   ],
   imports: [
     FormsModule,

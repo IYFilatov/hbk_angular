@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable, Input, OnInit, Output } from "@angular/core";
-import { FormControl } from "@angular/forms";
+import { ControlValueAccessor, FormControl } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { debounceTime, finalize } from "rxjs/operators";
 import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
@@ -8,7 +8,7 @@ import { DictJournalService } from "src/app/core/services/dict-journal.service";
 import { dictBankAccountElement } from "../models/dictionaries/dict-BankAccount-element";
 
 @Injectable()
-export abstract class inpDictBankaccBase implements OnInit {
+export abstract class inpDictBankaccBase implements ControlValueAccessor, OnInit {
 
   searchCtrl = new FormControl();
   @Input() selectedElement: dictBankAccountElement;
@@ -18,12 +18,26 @@ export abstract class inpDictBankaccBase implements OnInit {
   errorMsg: string;
 
   constructor(protected route: ActivatedRoute, protected dictJournalService: DictJournalService) { }
-
+  
   ngOnInit(): void {
     this.searchCtrl.valueChanges
       .pipe(debounceTime(500))
       .subscribe(v => this.searchValue(v));
-  }    
+  }
+
+  writeValue(incValue: dictBankAccountElement): void {
+    this.selectedElement = incValue;
+    this.onChange(this.selectedElement);
+  }
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+  registerOnTouched(fn: any): void {
+    this.OnTouched = fn;
+  }  
+
+  onChange: any = () => {}
+  OnTouched: any = () => {}
 
   searchValue(value: dictBankAccountElement | string):void {
     if (typeof  value != 'string'){
@@ -52,17 +66,15 @@ export abstract class inpDictBankaccBase implements OnInit {
   }
 
   clearSelected(){
-    this.setValue(null);
+    this.writeValue(null);
+    this.OnTouched();
   }
 
   onSelectElement(event: MatAutocompleteSelectedEvent){
-    this.setValue(event.option.value);
-  }
-
-  setValue(newValue: dictBankAccountElement){
-    this.selectedElement = newValue;
+    this.writeValue(event.option.value);
     this.bankaccElementEvent.emit(this.selectedElement);
-  }
+    this.OnTouched();
+  }  
 
   displayValue(value: dictBankAccountElement) {
     return value && value.accnumber ? value.accnumber : '';

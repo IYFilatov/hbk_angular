@@ -1,31 +1,31 @@
-import { EventEmitter, HostListener, Injectable, Input, OnInit, Output } from "@angular/core";
+import { EventEmitter, Injectable, Input, OnInit, Output } from "@angular/core";
 import { ControlValueAccessor, FormControl } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { debounceTime, finalize } from "rxjs/operators";
 import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
 
 import { DictJournalService } from "src/app/core/services/dict-journal.service";
-import { dictIncomeElement } from "../models/dictionaries/dict-income-element";
+import { dictBankElement } from "../models/dictionaries/dict-bank-element";
 
 @Injectable()
-export abstract class inpDictIncomesBase implements ControlValueAccessor, OnInit {
+export abstract class inpDictBankBase implements ControlValueAccessor, OnInit {
 
   searchCtrl = new FormControl();
-  @Input() selectedElement: dictIncomeElement;
-  @Output() incomeElementEvent = new EventEmitter<dictIncomeElement>();
-  filteredIncomes: Object[];
+  @Input() selectedElement: dictBankElement;
+  @Output() bankElementEvent = new EventEmitter<dictBankElement>();
+  filteredBanks: Object[];
   isLoading = false;
   errorMsg: string;
 
   constructor(protected route: ActivatedRoute, protected dictJournalService: DictJournalService) { }
-
+  
   ngOnInit(): void {
     this.searchCtrl.valueChanges
       .pipe(debounceTime(500))
       .subscribe(v => this.searchValue(v));
-  }    
+  }
 
-  writeValue(incValue: dictIncomeElement): void {
+  writeValue(incValue: dictBankElement): void {
     this.selectedElement = incValue;
     this.onChange(this.selectedElement);
   }
@@ -39,8 +39,7 @@ export abstract class inpDictIncomesBase implements ControlValueAccessor, OnInit
   onChange: any = () => {}
   OnTouched: any = () => {}
 
-  searchValue(value: dictIncomeElement | string):void {
-    //console.log(`search for ${value}`);
+  searchValue(value: dictBankElement | string):void {
     if (typeof  value != 'string'){
       return;
     }
@@ -48,21 +47,21 @@ export abstract class inpDictIncomesBase implements ControlValueAccessor, OnInit
     const baseId = this.route.parent.snapshot.paramMap.get('basename');
     
     this.errorMsg = "";
-    this.filteredIncomes = [];
+    this.filteredBanks = [];
     this.isLoading = true;
 
-    this.dictJournalService.searchJournal(baseId, 'incomes', value)
+    this.dictJournalService.searchJournal(baseId, 'banks', value)
           .pipe(
             finalize(() => {
               this.isLoading = false
             }))
       .subscribe(incData => {
         this.errorMsg = "";
-        this.filteredIncomes = incData.data;
+        this.filteredBanks = incData.data;
       },
       err => {
         this.errorMsg = 'no data received';
-        this.filteredIncomes = [];
+        this.filteredBanks = [];
       })
   }
 
@@ -73,11 +72,11 @@ export abstract class inpDictIncomesBase implements ControlValueAccessor, OnInit
 
   onSelectElement(event: MatAutocompleteSelectedEvent){
     this.writeValue(event.option.value);
-    this.incomeElementEvent.emit(this.selectedElement);
+    this.bankElementEvent.emit(this.selectedElement);
     this.OnTouched();
   }  
 
-  displayValue(value: dictIncomeElement) {
+  displayValue(value: dictBankElement) {
     return value && value.name ? value.name : '';
   }
 

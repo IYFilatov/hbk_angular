@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InDictBankComponent } from './in-dict-bank.component';
+import { DocCloseButtonsComponent } from './doc-close-buttons.component';
 
-describe('InDictBankComponent', () => {
-  let component: InDictBankComponent;
-  let fixture: ComponentFixture<InDictBankComponent>;
+describe('DocCloseButtonsComponent', () => {
+  let component: DocCloseButtonsComponent;
+  let fixture: ComponentFixture<DocCloseButtonsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InDictBankComponent ]
+      declarations: [ DocCloseButtonsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InDictBankComponent);
+    fixture = TestBed.createComponent(DocCloseButtonsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

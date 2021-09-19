@@ -1,6 +1,7 @@
 <p *ngIf="errorMessage" class="error">
   {{ errorMessage }}
 </p>
+<button mat-stroked-button (click)="post()">Post</button> <button mat-stroked-button (click)="unpost()">Unpost</button>
 <mat-grid-list cols="1" rowHeight="70px">  
   <mat-grid-tile>
     <mat-label class="align-left">Incomes</mat-label>
@@ -86,4 +87,4 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 <p></p>
-<app-form-close-buttons (okCloseClick)='okClose()' (cancelClick)='cancel()'></app-form-close-buttons>
+<app-doc-close-buttons (okCloseClick)='okClose()' (saveBtnClick)='save()' (cancelClick)='cancel()'></app-doc-close-buttons>

@@ -44,16 +44,15 @@ export abstract class docElBase implements FormCloseActions {
     return JSON.stringify(this.curElement) !== JSON.stringify(this.loadedElement);    
   }
 
-  acceptChanges(): void {
-    const elId = this.route.snapshot.paramMap.get('id');
-    
+  acceptChanges(closeOnChange: boolean = true): void {
+    const elId = this.route.snapshot.paramMap.get('id');    
     
     if (elId=='new'){
       const objNew = this.onAddNewElement();
-      this.addElement(objNew);
+      this.addElement(objNew, closeOnChange);
     } else {
       const objUpd = this.onUpdateElement();
-      this.updateElement(objUpd);
+      this.updateElement(objUpd, closeOnChange);
     }    
   }
 
@@ -73,7 +72,7 @@ export abstract class docElBase implements FormCloseActions {
     return incomeElement;
   }
 
-  updateElement(obj: docElement): void {
+  updateElement(obj: docElement, closeOnChange: boolean = true): void {
     const baseId = this.route.parent.snapshot.paramMap.get('basename');
     const docName = this.route.snapshot.url[0].path;
     const elId = this.route.snapshot.paramMap.get('id');
@@ -82,7 +81,9 @@ export abstract class docElBase implements FormCloseActions {
     this.docElementService.updateElement(baseId, docName, elIdNumber, obj).subscribe(
       docElement => {
         this.errorMessage = '';
-        this.close();
+        if (closeOnChange){ 
+          this.close(); 
+        }
       },
       err => {
         this.errorMessage = ['element didn`t updated! ' , JSON.stringify(err)].join('\n');
@@ -90,14 +91,16 @@ export abstract class docElBase implements FormCloseActions {
     );
   }
 
-  addElement(obj: docElement): void {
+  addElement(obj: docElement, closeOnChange: boolean = true): void {
     const baseId = this.route.parent.snapshot.paramMap.get('basename');
     const docName = this.route.snapshot.url[0].path;
 
     this.docElementService.addNewElement(baseId, docName, obj).subscribe(
       docElement => {
         this.errorMessage = '';
-        this.close();
+        if (closeOnChange){ 
+          this.close(); 
+        }
       },
       err => {
         this.errorMessage = ['element didn`t saved! ' , JSON.stringify(err)].join('\n');
@@ -120,6 +123,46 @@ export abstract class docElBase implements FormCloseActions {
       this.close();
     }
   }
+
+  save(): void {
+    if (this.isDataChanged()){
+      this.acceptChanges(false);
+    }
+  }
+
+  post(): void {
+    this.changePostState('post');
+  }
+
+  unpost(): void {
+    this.changePostState('unpost');    
+  }
+
+  changePostState(state: string, closeOnChange: boolean = false){
+    const baseId = this.route.parent.snapshot.paramMap.get('basename');
+    const docName = this.route.snapshot.url[0].path;
+    const elId = this.route.snapshot.paramMap.get('id');
+    const elIdNumber = parseInt(elId);
+    const stateText = state == 'post' ? 'posting' : 'unposting' ;
+
+    if (state == 'post' || state == 'unpost'){
+      this.docElementService.changePostState(baseId, docName, elIdNumber, state).subscribe(
+        docElement => {
+          this.errorMessage = '';
+          if (closeOnChange){ 
+            this.close(); 
+          }
+        },
+        err => {
+          this.errorMessage = [`element ${stateText} failed! ` , JSON.stringify(err)].join('\n');
+        }
+      );
+    } else {
+      this.errorMessage = ['wrong request!', ''].join('\n');
+    }
+    
+  }
+
 
   cancel(): void {
     this.close();

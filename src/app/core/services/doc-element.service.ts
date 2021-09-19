@@ -39,6 +39,24 @@ export class DocElementService {
     });
   }
 
+  changePostState(base: string, docName: string, elementNumber: number, state: string): Observable<Object> {
+    let queryParam = new Map([
+      ['post', state]
+    ]); 
+    const url: string = this.endpointBuilder.createUrlWithPathVarAndQueryMap('doc', [base, docName, elementNumber], queryParam);    
+    const reqBody = {};
+
+
+    return this.http.put(url, reqBody, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    });
+    // .pipe(
+    //   map(
+    //     data => { return{"type": "doc", "name": docName, "data": data['journal']} }
+    //   )
+    // );
+  }
+
   getNewElementBody(docElement: docElement): Object {
     let resBody = Object.assign({}, docElement);
     resBody = this.adaptTypes(resBody);    

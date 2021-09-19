@@ -1,15 +1,17 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+
 @Component({
-  selector: 'app-form-close-buttons',
-  templateUrl: './form-close-buttons.component.html',
-  styleUrls: ['./form-close-buttons.component.css'],
+  selector: 'app-doc-close-buttons',
+  templateUrl: './doc-close-buttons.component.html',
+  styleUrls: ['./doc-close-buttons.component.css'],
   host: {
     '(document:keydown)': 'keyEvent($event)'
   }
 })
-export class FormCloseButtonsComponent implements OnInit {
+export class DocCloseButtonsComponent implements OnInit {
 
   @Output() okCloseClick = new EventEmitter<any>();
+  @Output() saveBtnClick = new EventEmitter<any>();
   @Output() cancelClick  = new EventEmitter<any>();
 
   constructor() { }
@@ -28,6 +30,10 @@ export class FormCloseButtonsComponent implements OnInit {
 
   okClose() {
     this.okCloseClick.emit();
+  }
+
+  saveBtn() {
+    this.saveBtnClick.emit();
   }
 
   cancel() {

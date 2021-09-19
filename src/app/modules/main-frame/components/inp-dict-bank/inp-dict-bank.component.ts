@@ -7,18 +7,18 @@ import { inpDictBankBase } from 'src/app/shared/classes/inp-dict-bank-base';
 import { dictBankElement } from 'src/app/shared/models/dictionaries/dict-bank-element';
 
 @Component({
-  selector: 'app-in-dict-bank',
-  templateUrl: './in-dict-bank.component.html',
-  styleUrls: ['./in-dict-bank.component.css'],
+  selector: 'app-inp-dict-bank',
+  templateUrl: './inp-dict-bank.component.html',
+  styleUrls: ['./inp-dict-bank.component.css'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(()=>InDictBankComponent),
+      useExisting: forwardRef(()=>InpDictBankComponent),
       multi: true
     }
   ]
 })
-export class InDictBankComponent extends inpDictBankBase {
+export class InpDictBankComponent extends inpDictBankBase {
 
   @Input() selectedElement: dictBankElement;
   @Output() bankElementEvent = new EventEmitter<dictBankElement>();

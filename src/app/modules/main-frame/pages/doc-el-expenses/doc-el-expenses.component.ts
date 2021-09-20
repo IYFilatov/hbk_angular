@@ -7,19 +7,19 @@ import { MatTable } from '@angular/material/table';
 
 import { docElBase } from 'src/app/shared/classes/doc-el-base';
 import { DocElementService } from 'src/app/core/services/doc-element.service';
-import { docIncomeElement } from 'src/app/shared/models/documents/doc-income-element';
-import { docIncomeTableElement } from 'src/app/shared/models/documents/doc-income-table-element';
-import { dictIncomeElement } from 'src/app/shared/models/dictionaries/dict-income-element';
+import { docExpensesElement } from 'src/app/shared/models/documents/doc-expenses-element';
+import { docExpensesTableElement } from 'src/app/shared/models/documents/doc-expenses-table-element';
 import { dictBankAccountElement } from 'src/app/shared/models/dictionaries/dict-BankAccount-element';
+import { dictCostElement } from 'src/app/shared/models/dictionaries/dict-cost-element';
 
 @Component({
-  selector: 'app-doc-el-income',
-  templateUrl: './doc-el-income.component.html',
-  styleUrls: ['./doc-el-income.component.css']
+  selector: 'app-doc-el-expenses',
+  templateUrl: './doc-el-expenses.component.html',
+  styleUrls: ['./doc-el-expenses.component.css']
 })
-export class DocElIncomeComponent extends docElBase implements OnInit {
+export class DocElExpensesComponent extends docElBase implements OnInit {
 
-  curElement: docIncomeElement = {
+  curElement: docExpensesElement = {
     delmark: false,
     posted: false,
     number: 0,
@@ -28,11 +28,11 @@ export class DocElIncomeComponent extends docElBase implements OnInit {
     tableData: []
   };
   
-  loadedElement: docIncomeElement;
-  displayedColumns: String[] = ['select', 'linenum', 'inctypeobj', 'accnumObj', 'description', 'amount'];
-  selection = new SelectionModel<docIncomeTableElement>(true, []);
+  loadedElement: docExpensesElement;
+  displayedColumns: String[] = ['select', 'linenum', 'costtypeobj', 'accnumObj', 'description', 'amount'];
+  selection = new SelectionModel<docExpensesTableElement>(true, []);
 
-  @ViewChild(MatTable) docTable: MatTable<docIncomeTableElement>;
+  @ViewChild(MatTable) docTable: MatTable<docExpensesTableElement>;
 
   constructor(protected router: Router, protected route: ActivatedRoute, protected docElementService: DocElementService, protected _snackBar: MatSnackBar) {
     super(router, route, docElementService, _snackBar);
@@ -41,10 +41,10 @@ export class DocElIncomeComponent extends docElBase implements OnInit {
   ngOnInit(): void {
   }
 
-  onLoadElement(incomeElement: docIncomeElement): docIncomeElement {
-    incomeElement.date = this.converToDate(incomeElement.date);    
+  onLoadElement(costsElement: docExpensesElement): docExpensesElement {
+    costsElement.date = this.converToDate(costsElement.date);    
 
-    return incomeElement;
+    return costsElement;
   }
 
   isAllSelected() {
@@ -62,7 +62,7 @@ export class DocElIncomeComponent extends docElBase implements OnInit {
     this.selection.select(...this.curElement?.tableData);
   }
 
-  checkboxLabel(row?: docIncomeTableElement): string {
+  checkboxLabel(row?: docExpensesTableElement): string {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
@@ -70,13 +70,13 @@ export class DocElIncomeComponent extends docElBase implements OnInit {
   }
 
   addLine() {
-    const newRow: docIncomeTableElement = {
+    const newRow: docExpensesTableElement = {
       linenum: this.curElement?.tableData?.length+1,
-      inctypenum: null,
+      costtypenum: null,
       accnum: null,
       description: '',
       amount: 0,
-      inctypeObj: null,
+      costtypeObj: null,
       bankaccObj: null
     };
 
@@ -94,12 +94,12 @@ export class DocElIncomeComponent extends docElBase implements OnInit {
     this.docTable.renderRows();
   }
 
-  setIncomeElement(incomeEl: dictIncomeElement, parentElement: docIncomeTableElement){
-    parentElement.inctypenum = incomeEl?.number || 0;
-    parentElement.inctypeObj = incomeEl;
+  setCostElement(costEl: dictCostElement, parentElement: docExpensesTableElement){
+    parentElement.costtypenum = costEl?.number || 0;
+    parentElement.costtypeObj = costEl;
   }
 
-  setBankAccElement(bankaccEl: dictBankAccountElement, parentElement: docIncomeTableElement){
+  setBankAccElement(bankaccEl: dictBankAccountElement, parentElement: docExpensesTableElement){
     parentElement.accnum = bankaccEl?.number || 0;
     parentElement.bankaccObj = bankaccEl;    
   }

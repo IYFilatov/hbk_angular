@@ -1,0 +1,81 @@
+:host {
+  width: 100%;
+  background: rgb(240, 245, 247);
+}
+
+.table-button-container {
+  display: flex;
+  align-items: center;
+  padding: 5px 5px;
+  background: rgb(233, 238, 240);
+
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.full-width-container {
+  width: 100%;
+  flex: 1 0 auto;
+}
+
+.table-button {
+  background: rgb(240, 245, 247);
+}
+
+.table-button + .table-button {
+  margin-left: 8px;
+}
+
+.align-left {
+  max-width: 200px;
+  position: absolute;
+  left: 5px;
+}
+
+.docTable {
+  width: 100%;
+  background: rgb(240, 245, 247);
+}
+
+.mat-column-linenum {
+  max-width: 32px;
+  padding-right: 24px;
+  text-align: left;
+}
+
+.mat-column-costtypenum {
+  padding-left: 16px;
+  text-align: left;
+}
+
+.mat-column-accnum {
+  padding-left: 16px;
+  text-align: left;
+}
+
+.mat-column-description {
+  padding-left: 16px;
+  text-align: left;
+}
+
+.mat-column-amount {
+  max-width: 32px;
+  text-align: right;
+  font-weight: bold;
+}
+
+.error {
+  padding: 16px;
+  min-width: 200px;
+  color: white;
+  background-color: red;
+  white-space: pre-wrap;
+}

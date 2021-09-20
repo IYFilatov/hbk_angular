@@ -1,0 +1,90 @@
+<p *ngIf="errorMessage" class="error">
+  {{ errorMessage }}
+</p>
+<button mat-stroked-button [disabled]="curElement.posted ? 'disabled': null" (click)="post()">Post</button> <button mat-stroked-button [disabled]="!curElement.posted ? 'disabled': null" (click)="unpost()">Unpost</button>
+<mat-grid-list cols="1" rowHeight="70px">  
+  <mat-grid-tile>
+    <mat-label class="align-left">Expenses</mat-label>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="align-left">
+      <mat-label>Number</mat-label>
+      <input [(ngModel)]="curElement.number" matInput #num maxlength="11" value="{{curElement.number}}">
+      <mat-hint align="end">{{num.value.length}} / 11</mat-hint>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="align-left">
+      <mat-label>Document date</mat-label>
+      <input [(ngModel)]="curElement.date" matInput [matDatepicker]="date" [value]="curElement.date">
+      <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+      <mat-datepicker #date></mat-datepicker>
+    </mat-form-field>  
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="align-left">
+      <mat-label>Description</mat-label>
+      <input [(ngModel)]="curElement.description" matInput #description maxlength="255" value="{{curElement.description}}">
+      <mat-hint align="end">{{description.value.length}} / 255</mat-hint>
+    </mat-form-field>
+  </mat-grid-tile>
+</mat-grid-list>
+<p></p>
+<div class="table-button-container">
+  <button mat-raised-button (click)="addLine()" class="table-button">
+    Add line
+  </button>
+  <button
+      mat-raised-button
+      [disabled]="!curElement.tableData?.length"
+      (click)="removeLines()"
+      class="table-button">
+    Remove lines
+  </button>
+</div>
+<table mat-table [dataSource]="curElement.tableData" class="docTable">
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    [aria-label]="checkboxLabel()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)"
+                    [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="linenum">
+    <th mat-header-cell *matHeaderCellDef> No. </th>
+    <td mat-cell *matCellDef="let element"> {{element?.linenum}} </td>
+  </ng-container>
+  <ng-container matColumnDef="costtypeobj">
+    <th mat-header-cell *matHeaderCellDef> Cost type </th>
+    <td mat-cell *matCellDef="let element"><app-inp-dict-costs-table [(ngModel)]="element.costtypeObj" (costElementEvent)="setCostElement($event, element)"></app-inp-dict-costs-table></td>
+  </ng-container>
+  <ng-container matColumnDef="accnumObj">
+    <th mat-header-cell *matHeaderCellDef> Account </th>
+    <td mat-cell *matCellDef="let element"> <app-inp-dict-bankacc-table [(ngModel)]="element.bankaccObj" (bankaccElementEvent)="setBankAccElement($event, element)"></app-inp-dict-bankacc-table></td>
+  </ng-container>
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef> Description </th>
+    <td mat-cell *matCellDef="let element"> <input [(ngModel)]="element.description" matInput maxlength="255" value="{{element?.description}}"></td>
+  </ng-container>
+  <ng-container matColumnDef="amount">
+    <th mat-header-cell *matHeaderCellDef> Amount </th>
+    <td mat-cell *matCellDef="let element">
+      <input matInput [(ngModel)]="element.amount" type="number" class="full-width-container" placeholder="0.00" value="{{element?.amount}}">
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<p></p>
+<app-doc-close-buttons (okCloseClick)='okClose()' (saveBtnClick)='save()' (cancelClick)='cancel()'></app-doc-close-buttons>

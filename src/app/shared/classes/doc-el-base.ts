@@ -1,7 +1,10 @@
 import { ActivatedRoute, Router } from "@angular/router";
 
+import { MatSnackBar } from "@angular/material/snack-bar";
+
 import { FormCloseActions } from "src/app/core/interfaces/form-close-actions";
 import { DocElementService } from "src/app/core/services/doc-element.service";
+import { SnackBarMessageComponent } from "../components/snack-bar-message/snack-bar-message.component";
 import { docElement } from "../models/documents/doc-element";
 
 export abstract class docElBase implements FormCloseActions {
@@ -16,7 +19,7 @@ export abstract class docElBase implements FormCloseActions {
   loadedElement: docElement;
   errorMessage = '';
   
-  constructor(protected router: Router, protected route: ActivatedRoute, protected docElementService: DocElementService) {
+  constructor(protected router: Router, protected route: ActivatedRoute, protected docElementService: DocElementService, protected _snackBar: MatSnackBar) {
     this.route.paramMap.subscribe(() => { this.loadData(); });
   }
 
@@ -135,7 +138,7 @@ export abstract class docElBase implements FormCloseActions {
   }
 
   unpost(): void {
-    this.changePostState('unpost');    
+    this.changePostState('unpost');
   }
 
   changePostState(state: string, closeOnChange: boolean = false){
@@ -144,14 +147,12 @@ export abstract class docElBase implements FormCloseActions {
     const elId = this.route.snapshot.paramMap.get('id');
     const elIdNumber = parseInt(elId);
     const stateText = state == 'post' ? 'posting' : 'unposting' ;
-
+    
     if (state == 'post' || state == 'unpost'){
       this.docElementService.changePostState(baseId, docName, elIdNumber, state).subscribe(
         docElement => {
           this.errorMessage = '';
-          if (closeOnChange){ 
-            this.close(); 
-          }
+          this.successfulChangePostState(state, closeOnChange);
         },
         err => {
           this.errorMessage = [`element ${stateText} failed! ` , JSON.stringify(err)].join('\n');
@@ -159,8 +160,24 @@ export abstract class docElBase implements FormCloseActions {
       );
     } else {
       this.errorMessage = ['wrong request!', ''].join('\n');
+    }    
+  }
+
+  successfulChangePostState(state: string, closeOnChange: boolean){
+    switch (state){
+      case 'post': 
+        this._snackBar.openFromComponent(SnackBarMessageComponent, { data: 'Element successfully posted'});
+        this.curElement.posted = true;
+        break;
+      case 'unpost':
+        this._snackBar.openFromComponent(SnackBarMessageComponent, { data: 'Element successfully unposted'});
+        this.curElement.posted = false;
+        break;
     }
-    
+
+    if (closeOnChange){ 
+      this.close(); 
+    }
   }
 
 

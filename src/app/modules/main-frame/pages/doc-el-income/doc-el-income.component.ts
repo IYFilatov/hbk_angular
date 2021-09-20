@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/cor
 import { ActivatedRoute, Router } from '@angular/router';
 import { SelectionModel } from '@angular/cdk/collections';
 
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTable } from '@angular/material/table';
 
 import { docElBase } from 'src/app/shared/classes/doc-el-base';
@@ -33,8 +34,8 @@ export class DocElIncomeComponent extends docElBase implements OnInit {
 
   @ViewChild(MatTable) docTable: MatTable<docIncomeTableElement>;
 
-  constructor(protected router: Router, protected route: ActivatedRoute, protected docElementService: DocElementService) {
-    super(router, route, docElementService);
+  constructor(protected router: Router, protected route: ActivatedRoute, protected docElementService: DocElementService, protected _snackBar: MatSnackBar) {
+    super(router, route, docElementService, _snackBar);
   }
 
   ngOnInit(): void {

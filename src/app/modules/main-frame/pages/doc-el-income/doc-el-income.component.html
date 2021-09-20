@@ -1,7 +1,7 @@
 <p *ngIf="errorMessage" class="error">
   {{ errorMessage }}
 </p>
-<button mat-stroked-button (click)="post()">Post</button> <button mat-stroked-button (click)="unpost()">Unpost</button>
+<button mat-stroked-button [disabled]="curElement.posted ? 'disabled': null" (click)="post()">Post</button> <button mat-stroked-button [disabled]="!curElement.posted ? 'disabled': null" (click)="unpost()">Unpost</button>
 <mat-grid-list cols="1" rowHeight="70px">  
   <mat-grid-tile>
     <mat-label class="align-left">Incomes</mat-label>

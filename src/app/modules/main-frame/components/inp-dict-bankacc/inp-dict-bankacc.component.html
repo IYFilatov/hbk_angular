@@ -1,6 +1,6 @@
 <form>
   <mat-form-field>
-    <input matInput placeholder="Bank account" aria-label="Bank account" [matAutocomplete]="auto" [formControl]="searchCtrl" [value] = "selectedElement?.accnumber">
+    <input matInput placeholder="{{placeholderText}}" attr.aria-label="{{placeholderText}}" [matAutocomplete]="auto" [formControl]="searchCtrl" [value] = "selectedElement?.accnumber">
     <button matSuffix mat-icon-button aria-label="Clear" (click)="clearSelected()">
       <mat-icon>close</mat-icon>
     </button>

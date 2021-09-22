@@ -1,0 +1,27 @@
+{
+  "caption": "Account balance transfers",
+  "fields": {
+    "delmark": { 
+      "caption": "del",
+      "show": true,
+      "classes": "col-75px"
+    },
+    "posted": { 
+      "caption": "posted",
+      "show": true,
+      "classes": "col-75px"
+    },
+    "number": { 
+      "caption": "№",
+      "classes": "col-75px"
+    },
+    "date": { 
+      "caption": "Date",
+      "classes": "col-25"
+    },
+    "description": { 
+      "caption": "Description",
+      "classes": "col-50"      
+    }
+  }
+}

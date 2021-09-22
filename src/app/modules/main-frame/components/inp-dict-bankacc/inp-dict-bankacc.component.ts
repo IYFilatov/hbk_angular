@@ -20,6 +20,7 @@ import { dictBankAccountElement } from 'src/app/shared/models/dictionaries/dict-
 })
 export class InpDictBankaccComponent extends inpDictBankaccBase {
 
+  @Input() placeholderText: String = 'Bank account';
   @Input() selectedElement: dictBankAccountElement;
   @Output() bankaccElementEvent = new EventEmitter<dictBankAccountElement>();
 

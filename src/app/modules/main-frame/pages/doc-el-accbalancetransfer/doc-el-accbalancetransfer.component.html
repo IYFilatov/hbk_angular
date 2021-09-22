@@ -1,0 +1,52 @@
+<p *ngIf="errorMessage" class="error">
+  {{ errorMessage }}
+</p>
+<button mat-stroked-button [disabled]="curElement.posted ? 'disabled': null" (click)="post()">Post</button> <button mat-stroked-button [disabled]="!curElement.posted ? 'disabled': null" (click)="unpost()">Unpost</button>
+<mat-grid-list cols="1" rowHeight="70px">  
+  <mat-grid-tile>
+    <mat-label class="align-left">Account balance transfer</mat-label>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="align-left">
+      <mat-label>Number</mat-label>
+      <input [(ngModel)]="curElement.number" matInput #num maxlength="11" value="{{curElement.number}}">
+      <mat-hint align="end">{{num.value.length}} / 11</mat-hint>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="align-left">
+      <mat-label>Document date</mat-label>
+      <input [(ngModel)]="curElement.date" matInput [matDatepicker]="date" [value]="curElement.date">
+      <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+      <mat-datepicker #date></mat-datepicker>
+    </mat-form-field>  
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <app-inp-dict-bankacc class="align-left" [placeholderText]="'Account from'" [(ngModel)]="curElement.accfromObj" (bankaccElementEvent)="setAccFromElement($event)"></app-inp-dict-bankacc>    
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <app-inp-dict-bankacc class="align-left" [placeholderText]="'Account to'" [(ngModel)]="curElement.acctoObj" (bankaccElementEvent)="setAccToElement($event)"></app-inp-dict-bankacc>    
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="align-left">
+      <mat-label>Amount</mat-label>
+      <input [(ngModel)]="curElement.amount" matInput #tamount maxlength="11" value="{{curElement.amount}}">
+      <mat-hint align="end">{{tamount.value.length}} / 11</mat-hint>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="align-left">
+      <mat-label>Charge</mat-label>
+      <input [(ngModel)]="curElement.chargeamount" matInput #tcharge maxlength="11" value="{{curElement.chargeamount}}">
+      <mat-hint align="end">{{tcharge.value.length}} / 17</mat-hint>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="align-left">
+      <mat-label>Description</mat-label>
+      <input [(ngModel)]="curElement.description" matInput #description maxlength="255" value="{{curElement.description}}">
+      <mat-hint align="end">{{description.value.length}} / 255</mat-hint>
+    </mat-form-field>
+  </mat-grid-tile>   
+</mat-grid-list>
+<app-doc-close-buttons (okCloseClick)='okClose()' (saveBtnClick)='save()' (cancelClick)='cancel()'></app-doc-close-buttons>

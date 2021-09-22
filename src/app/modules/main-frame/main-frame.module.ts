@@ -43,6 +43,7 @@ import { InpDictBankComponent } from './components/inp-dict-bank/inp-dict-bank.c
 import { DocElExpensesComponent } from './pages/doc-el-expenses/doc-el-expenses.component';
 import { InpDictCostsComponent } from './components/inp-dict-costs/inp-dict-costs.component';
 import { InpDictCostsTableComponent } from './components/inp-dict-costs-table/inp-dict-costs-table.component';
+import { DocElAccbalancetransferComponent } from './pages/doc-el-accbalancetransfer/doc-el-accbalancetransfer.component';
 
 
 
@@ -59,7 +60,7 @@ import { InpDictCostsTableComponent } from './components/inp-dict-costs-table/in
     DictElCostComponent,
     DictElIncomeComponent,
     DictElBankaccountComponent,    
-    DocAnyJournalComponent, DocAnyJournalPanelComponent, DocElIncomeComponent, InpDictIncomesComponent, InpDictIncomesTableComponent, InpDictBankaccComponent, InpDictBankaccTableComponent, DocCloseButtonsComponent, InpDictBankComponent, DocElExpensesComponent, InpDictCostsComponent, InpDictCostsTableComponent,
+    DocAnyJournalComponent, DocAnyJournalPanelComponent, DocElIncomeComponent, InpDictIncomesComponent, InpDictIncomesTableComponent, InpDictBankaccComponent, InpDictBankaccTableComponent, DocCloseButtonsComponent, InpDictBankComponent, DocElExpensesComponent, InpDictCostsComponent, InpDictCostsTableComponent, DocElAccbalancetransferComponent,
   ],
   imports: [
     FormsModule,

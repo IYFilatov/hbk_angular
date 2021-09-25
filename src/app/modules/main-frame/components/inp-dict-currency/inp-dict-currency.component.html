@@ -1,0 +1,16 @@
+<form>
+  <mat-form-field>
+    <input matInput placeholder="{{placeholderText}}" attr.aria-label="{{placeholderText}}" [matAutocomplete]="auto" [formControl]="searchCtrl" [value] = "selectedElement?.name">
+    <button matSuffix mat-icon-button aria-label="Clear" (click)="clearSelected()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectElement($event)" [displayWith]="displayValue">
+      <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
+      <ng-container *ngIf="!isLoading">
+        <mat-option *ngFor="let curr of filteredCurr" [value]="curr">
+          <span> {{curr.number}}.  <b> {{curr.name}} </b> {{curr.code}} {{curr.symbol}} </span>
+        </mat-option>
+      </ng-container>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

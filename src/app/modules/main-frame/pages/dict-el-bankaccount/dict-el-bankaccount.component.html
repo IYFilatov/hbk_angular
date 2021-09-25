@@ -30,6 +30,9 @@
     <app-inp-dict-bank class="align-left" [(ngModel)]="curElement.bankObj" (bankElementEvent)="setBankElement($event)"></app-inp-dict-bank>
   </mat-grid-tile>
   <mat-grid-tile>
+    <app-inp-dict-currency class="align-left" [(ngModel)]="curElement.currencyObj" (currencyElementEvent)="setCurrencyElement($event)"></app-inp-dict-currency>
+  </mat-grid-tile>
+  <mat-grid-tile>
     <mat-form-field class="align-left">
       <mat-label>Open date</mat-label>
       <input [(ngModel)]="curElement.opened_at" matInput [matDatepicker]="openAt" [value]="curElement.opened_at">

@@ -44,8 +44,7 @@ export class DocElAccbalancetransferComponent extends docElBase implements OnIni
     return accBalanceTransferElement;
   }
 
-  setAccFromElement(bankaccEl: dictBankAccountElement){
-    console.log(bankaccEl);
+  setAccFromElement(bankaccEl: dictBankAccountElement){    
     this.curElement.accfrom = bankaccEl?.number || 0;    
   }
 

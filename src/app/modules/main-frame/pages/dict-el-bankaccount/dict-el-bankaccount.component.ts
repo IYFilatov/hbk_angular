@@ -1,4 +1,3 @@
-import { coerceStringArray } from '@angular/cdk/coercion';
 import { Component, OnInit } from '@angular/core';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,6 +7,7 @@ import { CUSTOM_DATE_FORMATS } from 'src/app/shared/classes/custom-datepicker-ad
 import { dictElBase } from 'src/app/shared/classes/dict-el-base';
 import { dictBankElement } from 'src/app/shared/models/dictionaries/dict-bank-element';
 import { dictBankAccountElement } from 'src/app/shared/models/dictionaries/dict-BankAccount-element';
+import { dictCurrElement } from 'src/app/shared/models/dictionaries/dict-curr-element';
 
 @Component({
   selector: 'app-dict-el-bankaccount',
@@ -23,9 +23,11 @@ export class DictElBankaccountComponent extends dictElBase implements OnInit {
     description: '',
     accnumber: '',
     bankid: 0,
+    currencyid: 0,
     opened_at: new Date(),
     closed_at: null,
     bankObj: null,
+    currencyObj: null,
   };
 
   loadedElement: dictBankAccountElement;
@@ -48,8 +50,13 @@ export class DictElBankaccountComponent extends dictElBase implements OnInit {
   }
 
   setBankElement(bankEl: dictBankElement){
-    this.curElement.bankObj = bankEl;
+    //this.curElement.bankObj = bankEl;
     this.curElement.bankid = bankEl?.number || 0;
+  }
+
+  setCurrencyElement(currEl: dictCurrElement){
+    //this.curElement.currencyObj = currEl;
+    this.curElement.currencyid = currEl?.number || 0;
   }
 
   converToDate(v: any): Date {

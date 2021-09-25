@@ -44,6 +44,7 @@ import { DocElExpensesComponent } from './pages/doc-el-expenses/doc-el-expenses.
 import { InpDictCostsComponent } from './components/inp-dict-costs/inp-dict-costs.component';
 import { InpDictCostsTableComponent } from './components/inp-dict-costs-table/inp-dict-costs-table.component';
 import { DocElAccbalancetransferComponent } from './pages/doc-el-accbalancetransfer/doc-el-accbalancetransfer.component';
+import { InpDictCurrencyComponent } from './components/inp-dict-currency/inp-dict-currency.component';
 
 
 
@@ -60,7 +61,8 @@ import { DocElAccbalancetransferComponent } from './pages/doc-el-accbalancetrans
     DictElCostComponent,
     DictElIncomeComponent,
     DictElBankaccountComponent,    
-    DocAnyJournalComponent, DocAnyJournalPanelComponent, DocElIncomeComponent, InpDictIncomesComponent, InpDictIncomesTableComponent, InpDictBankaccComponent, InpDictBankaccTableComponent, DocCloseButtonsComponent, InpDictBankComponent, DocElExpensesComponent, InpDictCostsComponent, InpDictCostsTableComponent, DocElAccbalancetransferComponent,
+    DocAnyJournalComponent, DocAnyJournalPanelComponent, DocElIncomeComponent, DocCloseButtonsComponent, DocElExpensesComponent, DocElAccbalancetransferComponent,
+    InpDictIncomesComponent, InpDictIncomesTableComponent, InpDictBankaccComponent, InpDictBankaccTableComponent, InpDictBankComponent, InpDictCostsComponent, InpDictCostsTableComponent, InpDictCurrencyComponent,
   ],
   imports: [
     FormsModule,

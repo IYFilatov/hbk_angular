@@ -10,13 +10,21 @@
       "caption": "№",
       "classes": "col-75px"
     },
-    "code": { 
-      "caption": "Code",
+    "alcode": { 
+      "caption": "Alphabetic code",
+      "classes": "col-10"
+    },
+    "numcode": { 
+      "caption": "Numeric code",
       "classes": "col-10"
     },
     "symbol": { 
       "caption": "Symbol",
       "classes": "col-10"
+    },
+    "name": { 
+      "caption": "Name",
+      "classes": "col-50"
     }
   }
 }

@@ -22,7 +22,8 @@ export class DictElCurrencyComponent extends dictElBase implements OnInit {
   curElement: dictCurrElement = {
     number: 0,
     name: '',
-    code: '',
+    alcode: '',
+    numcode: '',
     symbol: ''
   };
   

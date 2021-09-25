@@ -77,7 +77,7 @@ export abstract class inpDictCurrencyBase implements ControlValueAccessor, OnIni
   }  
 
   displayValue(value: dictCurrElement) {
-    return value && value.name ? value.name : '';
+    return value && value.alcode ? value.alcode : '';
   }
 
 }

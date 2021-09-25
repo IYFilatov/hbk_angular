@@ -75,8 +75,7 @@ export class DocElAccbalancetransferComponent extends docElBase implements OnIni
   }
 
   calcExchAmount(){
-    this.curElement.toamount = this.curElement.fromamount * this.curElement.excrate;
-    console.log(this.curElement.toamount);
+    this.curElement.toamount = this.curElement.fromamount * this.curElement.excrate;    
   }
 
 }

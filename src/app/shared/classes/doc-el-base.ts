@@ -35,6 +35,7 @@ export abstract class docElBase implements FormCloseActions {
           const convEl = this.onLoadElement(docElement);
           this.curElement = convEl;
           this.loadedElement = JSON.parse(JSON.stringify(convEl));
+          this.onAfterLoadElement();
         },
         err => {
           this.close();
@@ -44,7 +45,7 @@ export abstract class docElBase implements FormCloseActions {
   }
 
   isDataChanged(): boolean {
-    return JSON.stringify(this.curElement) !== JSON.stringify(this.loadedElement);    
+    return JSON.stringify(this.curElement) !== JSON.stringify(this.loadedElement);
   }
 
   acceptChanges(closeOnChange: boolean = true): void {
@@ -73,6 +74,10 @@ export abstract class docElBase implements FormCloseActions {
 
   onLoadElement(incomeElement: docElement):docElement {
     return incomeElement;
+  }
+
+  onAfterLoadElement(){
+    
   }
 
   updateElement(obj: docElement, closeOnChange: boolean = true): void {

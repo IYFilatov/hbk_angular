@@ -30,8 +30,21 @@
   <mat-grid-tile>
     <mat-form-field class="align-left">
       <mat-label>Amount</mat-label>
-      <input [(ngModel)]="curElement.amount" matInput #tamount maxlength="11" value="{{curElement.amount}}">
-      <mat-hint align="end">{{tamount.value.length}} / 11</mat-hint>
+      <input [(ngModel)]="curElement.fromamount" (ngModelChange)="calcExchAmount()" matInput #fromamount maxlength="11" value="{{curElement.fromamount}}">
+      <mat-hint align="end">{{fromamount.value.length}} / 17</mat-hint>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile *ngIf="!isSameCurrency">
+    <mat-form-field class="align-left">
+      <mat-label>Rate</mat-label>
+      <input [(ngModel)]="curElement.excrate" (ngModelChange)="calcExchAmount()" matInput #excrate maxlength="11" value="{{curElement.excrate}}">
+      <mat-hint align="end">{{excrate.value.length}} / 15</mat-hint>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile *ngIf="!isSameCurrency">
+    <mat-form-field class="align-left">
+      <mat-label>Converted amount</mat-label>
+      <input [(ngModel)]="curElement.toamount" matInput [disabled]="true" value="{{curElement.toamount}}">
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile>

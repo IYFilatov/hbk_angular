@@ -22,14 +22,17 @@ export class DocElAccbalancetransferComponent extends docElBase implements OnIni
     date: new Date(),
     accfrom: 0,
     accto: 0,
-    amount: 0,
+    fromamount: 0,
+    excrate: 1,
+    toamount: 0,
     chargeamount: 0,
     description: '',
     accfromObj: null,
-    acctoObj: null
+    acctoObj: null    
   };
 
   loadedElement: docAccBalanceTransferElement;
+  isSameCurrency: boolean = true;
 
   constructor(protected router: Router, protected route: ActivatedRoute, protected docElementService: DocElementService, protected _snackBar: MatSnackBar) {
     super(router, route, docElementService, _snackBar);
@@ -40,16 +43,40 @@ export class DocElAccbalancetransferComponent extends docElBase implements OnIni
 
   onLoadElement(accBalanceTransferElement: docAccBalanceTransferElement): docAccBalanceTransferElement {
     accBalanceTransferElement.date = this.converToDate(accBalanceTransferElement.date);
-
+    
     return accBalanceTransferElement;
   }
 
-  setAccFromElement(bankaccEl: dictBankAccountElement){    
+  onAfterLoadElement(){
+    this.isSameCurrencyCheck();
+  }
+
+  setAccFromElement(bankaccEl: dictBankAccountElement){
+    this.setExchRate();
     this.curElement.accfrom = bankaccEl?.number || 0;    
   }
 
   setAccToElement(bankaccEl: dictBankAccountElement){
-    this.curElement.accto = bankaccEl?.number || 0;    
+    this.setExchRate();
+    this.curElement.accto = bankaccEl?.number || 0;
+  }
+
+  isSameCurrencyCheck(){
+    this.isSameCurrency = this.curElement.accfromObj?.currencyid === this.curElement.acctoObj?.currencyid;    
+  }
+
+  setExchRate() {
+    this.isSameCurrencyCheck();
+    if (this.isSameCurrency){
+      this.curElement.excrate = 1;
+    } else {
+      this.curElement.excrate = 0;
+    }
+  }
+
+  calcExchAmount(){
+    this.curElement.toamount = this.curElement.fromamount * this.curElement.excrate;
+    console.log(this.curElement.toamount);
   }
 
 }

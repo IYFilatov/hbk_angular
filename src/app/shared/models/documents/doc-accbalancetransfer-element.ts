@@ -8,7 +8,9 @@ export interface docAccBalanceTransferElement extends docElement {
   date: Date;
   accfrom: number;
   accto: number;
-  amount: number;
+  fromamount: number;
+  excrate: number;
+  toamount: number;
   chargeamount: number;
   description: string;
   accfromObj: dictBankAccountElement;

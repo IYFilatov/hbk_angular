@@ -1,6 +1,6 @@
 import { Component, EventEmitter, forwardRef, HostListener, Input, Output } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { DictJournalService } from 'src/app/core/services/dict-journal.service';
 import { inpDictCurrencyBase } from 'src/app/shared/classes/inp-dict-currency-base';
@@ -24,8 +24,8 @@ export class InpDictCurrencyComponent extends inpDictCurrencyBase {
   @Input() selectedElement: dictCurrElement;
   @Output() currencyElementEvent = new EventEmitter<dictCurrElement>();
 
-  constructor(protected route: ActivatedRoute, protected dictJournalService: DictJournalService) {
-    super(route, dictJournalService);
+  constructor(protected router: Router, protected route: ActivatedRoute, protected dictJournalService: DictJournalService) {
+    super(router, route, dictJournalService);
   }
 
   @HostListener('click')

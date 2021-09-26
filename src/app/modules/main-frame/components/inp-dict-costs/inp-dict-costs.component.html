@@ -1,6 +1,9 @@
 <form>
   <mat-form-field>
     <input matInput placeholder="Cost" aria-label="Cost" [matAutocomplete]="auto" [formControl]="searchCtrl" [value] = "selectedElement?.name">
+    <button matSuffix mat-icon-button aria-label="Open" [disabled]="!isSelected()" (click)="openSelected()">
+      <mat-icon>arrow_forward</mat-icon>
+    </button>
     <button matSuffix mat-icon-button aria-label="Clear" (click)="clearSelected()">
       <mat-icon>close</mat-icon>
     </button>    

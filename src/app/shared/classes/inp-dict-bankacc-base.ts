@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable, Input, OnInit, Output } from "@angular/core";
 import { ControlValueAccessor, FormControl } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { debounceTime, finalize } from "rxjs/operators";
 import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
 
@@ -17,7 +17,7 @@ export abstract class inpDictBankaccBase implements ControlValueAccessor, OnInit
   isLoading = false;
   errorMsg: string;
 
-  constructor(protected route: ActivatedRoute, protected dictJournalService: DictJournalService) { }
+  constructor(protected router: Router, protected route: ActivatedRoute, protected dictJournalService: DictJournalService) { }
   
   ngOnInit(): void {
     this.searchCtrl.valueChanges
@@ -75,6 +75,16 @@ export abstract class inpDictBankaccBase implements ControlValueAccessor, OnInit
     this.bankaccElementEvent.emit(this.selectedElement);
     this.OnTouched();
   }  
+
+  isSelected(): boolean{
+    return this.selectedElement?.number !== undefined;
+  }
+
+  openSelected(){
+    const baseId = this.route.parent.snapshot.paramMap.get('basename');
+    
+    this.router.navigate([`/dict/${baseId}/bankaccounts/${this.selectedElement.number}`])
+  }
 
   displayValue(value: dictBankAccountElement) {
     return value && value.accnumber ? value.accnumber : '';
